@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Portfolio Item - Start Bootstrap Template</title>
+    <title>E-way - Start E-way</title>
     <link href="<?=base_url('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?=base_url('bootstrap/css/portfolio-item.css')?>" rel="stylesheet">
 </head>
