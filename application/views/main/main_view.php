@@ -19,7 +19,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="<?=base_url()?>">
-                    <img class="img-responsive" src="<?=base_url('images/logo.png')?>" alt="">
+                    <img class="img-responsive" src="<?=base_url('images/logo.png')?>" alt="E_way_logo" style="
+    margin-top: -13px">
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,10 +30,10 @@
                         <a href="<?=base_url('register')?>">Գրանցվել</a>
                     </li>
                     <li>
-                        <a href="#">Ծառայություններ</a>
+                        <a href="#">Մուտք</a>
                     </li>
                     <li>
-                        <a href="#">Կապ</a>
+                        <!-- <a href="#">Կապ</a> -->
                     </li>
                 </ul>
             </div>

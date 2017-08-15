@@ -15,24 +15,21 @@ class Register extends CI_Controller {
 			$userpass = $this->input->post('user_password');
 			$userconfpass = $this->input->post('password_confirmation');
 			if(isset($userpass) && isset($userconfpass) && !empty($userconfpass) && !empty($userpass)){
-				if($userpass === $userconfpass ){
-			// 		echo  $userpass;
-			// 		echo  $userconfpass;
-			// var_dump($userpass);
-				$data  = array(
-					'user_name' => $username,
-					'user_lastname' => $userlastname,
-					'user_mobile_number' => $usermobile,
-					'user_email' => $useremail,	
-					'user_password' => crypt($userpass),
-					'user_register_time' => time()
-					);
-				$this->load->model('register_users_model');
-				$this->register_users_model->insert($data);
-				redirect('user', 'location');
-
-				}else{
 					// die('else');
+				if($userpass === $userconfpass ){
+					$data  = array(
+						'user_name' => $username,
+						'user_lastname' => $userlastname,
+						'user_mobile_number' => $usermobile,
+						'user_email' => $useremail,	
+						'user_password' => password_hash($userpass, PASSWORD_BCRYPT),
+						// if (password_verify('rasmuslerdorf', $hash)) {
+						'user_register_time' => time()
+						);
+					$this->load->model('register_users_model');
+					$this->register_users_model->insert($data);
+					redirect('user', 'location');
+				}else{
 					$data = array(
 						'username' => $username,
 						'userlastname' => $userlastname,
@@ -40,31 +37,25 @@ class Register extends CI_Controller {
 						'useremail' => $useremail,
 						'errorline'	=> true,
 						'haserror' => true 
-
 						);
-					// out($data);
-					$this->load->template('register/register_view',$data);
-					// echo 7777777777777777777; 					
 				}
 
 			}else{
 				$data = array(
+					'error_n' => empty($username) ? true : false ,
+					'error_ln' => empty($userlastname) ? true : false ,
+					'error_mobile' => empty($usermobile) ? true : false ,
+					'error_email' => empty($useremail) ? true : false ,
+					'haserror' => true,
+					'errorline'	=> true,
 					'username' => $username,
 					'userlastname' => $userlastname,
 					'usermobile' => $usermobile,
-					'useremail' => $useremail,	
-					'haserror' => true 
+					'useremail' => $useremail,
 					);
-				var_dump($username);
-
-				// $this->load->template('register/register_view',$data);
 			}
-			// out($this->input->server('REQUEST_METHOD'));
+			// redirect('register', 'location');
+			$this->load->template('register/register_view',$data);
 		}
-		// if(isset($pst) && !empty($pst)){
-		// }
-		// $aaa = $this->input->post();
-		// out($aaa['first_name']);
-		$this->load->template('register/register_view');
 	}
 }
