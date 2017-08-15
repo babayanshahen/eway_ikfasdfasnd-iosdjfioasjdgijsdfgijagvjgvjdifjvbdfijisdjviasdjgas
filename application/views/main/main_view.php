@@ -1,7 +1,14 @@
 	<style>
 		#map{
 			height: 400px;
+            border: 2px solid rgba(34, 34, 34, 0.49);
 		}
+        .input-group-addon{
+            background-color: #b4d250;
+        }
+        /*.form-control{
+            border:#b4d250;
+        }*/
 	</style>
 <!-- <h1>my google map</h1> -->
 <!-- <div id="map"></div> -->
@@ -30,7 +37,7 @@
                         <a href="<?=base_url('register')?>">Գրանցվել</a>
                     </li>
                     <li>
-                        <a href="#">Մուտք</a>
+                        <a href="<?=base_url('login')?>">Մուտք</a>
                     </li>
                     <li>
                         <!-- <a href="#">Կապ</a> -->
@@ -67,7 +74,7 @@
                 <p>Մուտքագրիր այն ինչ քեզ պետք է հիմա</p>
 					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Մթերային խանութ ...">
-						<div class="input-group-addon">Գտնել մոտակայքում</div>
+						<div class="input-group-addon greeen-color">Գտնել մոտակայքում</div>
 					</div>
 					<hr>
                 	<!-- <img class="img-responsive" src="<?=base_url('images/search.jpg')?>" alt=""> -->
@@ -131,10 +138,25 @@
 
 		var map = new google.maps.Map(document.getElementById('map'),options)
 
-		var marker = new google.maps.Marker({
-          position: {lat:40.1561595,lng:44.5186327},
-          map: map
-        });
-	}
+		// var marker = new google.maps.Marker({
+  //         position: {lat:40.1561595,lng:44.5186327},
+  //         map: map
+  //       });
+    var myloc = new google.maps.Marker({
+        clickable: false,
+icon: new google.maps.Marker(   new google.maps.Size(22,22),
+                                new google.maps.Point(0,18),
+                                new google.maps.Point(11,11)),
+shadow: null,
+        zIndex: 999,
+        map: map
+    });
 
+    if (navigator.geolocation) navigator.geolocation.getCurrentPosition(function(pos) {
+        var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        myloc.setPosition(me);
+    }, function(error) {
+        // ...
+    });
+    }
 </script>

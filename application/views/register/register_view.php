@@ -2,9 +2,9 @@
 	body{
     background-color: #dadada;
 }
-.centered-form{
+/*.centered-form{
 	margin-top: 60px;
-}
+}*/
 
 .centered-form .panel{
 	background: rgba(255, 255, 255, 0.8);
