@@ -17,32 +17,36 @@
     	<div class="panel panel-default">
     		<div class="panel-heading">
 		    		<h3 class="panel-title">գրանցվելու համար<small> 	լրացրեք հետևյալ տողերը</small></h3>
+		    		<?=isset($errorline) && $errorline ? '<small>Չեն համընկնում</small>' : ''?>
 		 			</div>
 		 			<div class="panel-body">
-		    		<form role="form">
+		    		<form role="form" action="<?=base_url('register/registering')?>" method="post">
 		    			<div class="row">
 		    				<div class="col-xs-6 col-sm-6 col-md-6">
 		    					<div class="form-group">
-		                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="Անուն">
+		                <input type="text" name="user_name" id="first_name" class="form-control input-sm" placeholder="Անուն" <?=isset($username) ? "value=$username" : ''?>>
 		    					</div>
 		    				</div>
 		    				<div class="col-xs-6 col-sm-6 col-md-6">
 		    					<div class="form-group">
-		    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Ազգանուն">
+		    						<input type="text" name="user_lastname" id="last_name" class="form-control input-sm" placeholder="Ազգանուն" <?=isset($userlastname) ? "value=$userlastname" : ''?>>
 		    					</div>
 		    				</div>
 		    			</div>
 		    			<div class="form-group">
-		    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Էլ հասցե">
+		    				<input type="text" name="user_mobile_number" id="last_name" class="form-control input-sm" placeholder="Հեռախոսահամար" <?=isset($usermobile) ? "value=$usermobile" : ''?>>
+		    			</div>
+		    			<div class="form-group">
+		    				<input type="email" name="user_email" id="email" class="form-control input-sm" placeholder="Էլ հասցե" <?=isset($usermobile) ? "value=$useremail" : ''?>>
 		    			</div>
 		    			<div class="row">
 		    				<div class="col-xs-6 col-sm-6 col-md-6">
-		    					<div class="form-group">
-		    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Գաղտնաբառ">
+		    					<div class="form-group <?=isset($haserror) && $haserror ? 'has-error' : ''?>">
+		    						<input type="password" name="user_password" id="password" class="form-control input-sm" placeholder="Գաղտնաբառ">
 		    					</div>
 		    				</div>
 		    				<div class="col-xs-6 col-sm-6 col-md-6">
-		    					<div class="form-group">
+		    					<div class="form-group <?=isset($haserror) && $haserror ? 'has-error' : ''?>">
 		    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="կրկ. Գաղտնաբառ">
 		    					</div>
 		    				</div>
