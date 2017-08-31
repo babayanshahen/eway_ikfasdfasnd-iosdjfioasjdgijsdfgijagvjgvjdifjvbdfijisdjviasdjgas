@@ -29,6 +29,24 @@ class MY_Model extends CI_Model
         // }
         // var_dump($res[0]);
     }
+
+    public function getRecords($where = array())
+    {
+        $this->db->where($where);
+        $res = $this->db->get($this->table)->result_object();
+        if(sizeof($res)){
+            return $res;
+        }else{
+            return FALSE;
+        }
+        // if(is_null($res)){
+        //     return FALSE;
+        // }else{
+            // var_dump($res);
+            // return $res['0'];
+        // }
+        // var_dump($res[0]);
+    }
     
     // public function getRecord($id)
     // {
@@ -62,10 +80,10 @@ class MY_Model extends CI_Model
     
     // /* Update Function */
     
-    // public function update($id, $vars)
-    // {
-    //     $this->db->where($this->pk, $id)->update($this->table, $vars);
-    // }
+    public function update($id, $vars)
+    {
+        $this->db->where($this->pk, $id)->update($this->table, $vars);
+    }
 
     // public function UpdateByField($where, $vars) 
     // {

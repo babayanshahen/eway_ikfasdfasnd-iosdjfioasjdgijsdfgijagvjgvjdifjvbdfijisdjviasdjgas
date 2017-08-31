@@ -18,13 +18,13 @@ color: #b4d250;
 			echo form_open('user/register_product', userInfo()  );
 		?>
 		<div class="dropdown">
-			<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Նշեք հայտի տեսակը
+			<button   id="sel_st_type"class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Նշեք հայտի տեսակը
 			<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
-				<!-- <li><a href="#">HTML</a></li> -->
-				<li><a href="#" id="apranqatesak" >Ներկայացնում եմ Ապրանքատեսակ</a></li>
-				<li><a href="#" >Ֆիզ Անձ, ՍՊԸ ,ՓԲԸ ,ԱՁ ... Ներկայացնում եմ իմ Ձեռնարկությունը</a></li>
+			<?php foreach ($statement as $statement): ?>
+				<li><a href="#" onclick="changeButton(event)" id="apranqatesak" value="<?= $statement->e_stm_value?>" ><?= $statement->e_stm_name ?></a></li>
+			<?php endforeach; ?>
 			</ul>
 		</div>
 	</div>
@@ -32,7 +32,7 @@ color: #b4d250;
 	<div class='form-group' >
 		<div class='input-group mb-2 mr-sm-2 mb-sm-0'>
 			<div class='input-group-addon'>Հասցե</div>
-			<input type='text' name="userprodgeoparams" class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input" >
+			<input type='text' name="user_prod_add" class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input" >
 			<input type="hidden" name="lat" class="lat">
 			<input type="hidden" name="lng" class="lng">
 		</div>
@@ -42,6 +42,12 @@ color: #b4d250;
 </div>
 			<div id='map' class='col-md-6'></div>
 <script>
+function changeButton(event){
+	// alert('asdasd');
+	console.log(event.target.innerHTML);
+	// console.log($(this));
+	$("#sel_st_type").html(event.target.innerHTML);
+}
 function initMap(){
 	var options = {
 		zoom:15,
