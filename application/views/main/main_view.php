@@ -4,7 +4,7 @@
             border: 2px solid rgba(34, 34, 34, 0.49);
 		}
         .input-group-addon{
-            background-color: #b4d250;
+            background-color: #9fb947;
         }
         /*.form-control{
             border:#b4d250;
@@ -73,13 +73,14 @@
                 <!-- <h3>Կայքի մասին</h3> -->
                 <p>Մուտքագրիր այն ինչ քեզ պետք է հիմա</p>
 					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Մթերային խանութ ...">
+                        <input type="text" ng-model="getProduct" class="form-control" id="inlineFormInputGroup" placeholder="Մթերային խանութ ...">
 						<div class="input-group-addon greeen-color">Գտնել մոտակայքում</div>
 					</div>
+                    <!-- <p>փնտրում ես {{getProduct}} </p> -->
 					<hr>
                 	<!-- <img class="img-responsive" src="<?=base_url('images/search.jpg')?>" alt=""> -->
 	                <h4>Easy way հեշտությամբ</h4>
-	                <ul>
+	                   <ul>
 	                    <li>Գրանցվիր </li>
 	                    <li>Նշիր քեզ  քարտեզի վրա</li>
 	                    <li>Ներկայացրու քո ապրանքը</li>
@@ -143,13 +144,13 @@
   //         map: map
   //       });
     var myloc = new google.maps.Marker({
-        clickable: false,
-icon: new google.maps.Marker(   new google.maps.Size(22,22),
-                                new google.maps.Point(0,18),
-                                new google.maps.Point(11,11)),
-shadow: null,
-        zIndex: 999,
-        map: map
+                clickable: true,
+        // icon: new google.maps.Marker(   new google.maps.Size(22,22),
+        //                                 new google.maps.Point(0,18),
+        //                                 new google.maps.Point(11,11)),
+        shadow: null,
+                zIndex: 999,
+                map: map
     });
 
     if (navigator.geolocation) navigator.geolocation.getCurrentPosition(function(pos) {

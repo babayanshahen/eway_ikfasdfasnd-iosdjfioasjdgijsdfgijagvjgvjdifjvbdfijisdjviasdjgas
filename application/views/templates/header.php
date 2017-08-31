@@ -13,8 +13,12 @@
     <link href="<?=base_url('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?=base_url('bootstrap/css/portfolio-item.css')?>" rel="stylesheet">
     <link rel="shortcut icon" href="<?=base_url('images/logo.png')?>" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body ng-app>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">

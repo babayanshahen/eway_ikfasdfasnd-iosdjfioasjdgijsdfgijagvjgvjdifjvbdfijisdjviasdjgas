@@ -1,0 +1,126 @@
+<style>
+	.fa{
+font-size: 18px;
+padding-right: 5px;
+color: #b4d250;
+}
+#map{
+			height: 350px;
+            border: 2px solid rgba(34, 34, 34, 0.49);
+		}
+</style>
+
+<div class="container">
+	<div  class='col-md-6'>
+	<div class="form-group" >
+		<div class="dropdown">
+			<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Նշեք հայտի տեսակը
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<!-- <li><a href="#">HTML</a></li> -->
+				<li><a href="#" id="apranqatesak" >Ներկայացնում եմ Ապրանքատեսակ</a></li>
+				<li><a href="#" >Ֆիզ Անձ, ՍՊԸ ,ՓԲԸ ,ԱՁ ... Ներկայացնում եմ իմ Ձեռնարկությունը</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class="form-group aprankappend"></div>
+		<div class='form-group' >
+			<div class='input-group mb-2 mr-sm-2 mb-sm-0'>
+				<div class='input-group-addon'>Հասցե</div>
+				<input type='text' class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input" >
+			</div>
+		</div>
+		<button class="btn btn-success" type="button" >Հաստատել
+			</button>
+	</div>
+			<div id='map' class='col-md-6'></div>
+<script>
+function initMap(){
+	var options = {
+		zoom:7,
+		center:{lat:40.1566055,lng:44.5186327}
+	}
+	var map = new google.maps.Map(document.getElementById('map'),options)
+	var myloc = new google.maps.Marker({
+        clickable: true,
+    	shadow: null,
+        zIndex: 999,
+        map: map
+	});
+
+	var input = (document.getElementById('pac-input'));
+    var searchBox = new google.maps.places.SearchBox((input));
+
+    google.maps.event.addListener(searchBox, 'places_changed', function() {
+	var places = searchBox.getPlaces();
+		// for (var i = 0, marker; marker = markers[i]; i++) {
+		// 	marker.setMap(null);
+		// }
+
+    	markers = [];	
+	    var bounds = new google.maps.LatLngBounds();
+	    var place = null;
+	    var viewport = null;
+	    var myLatLng = {lat: -25.363, lng: 131.044};
+
+		// var map = new google.maps.Map(document.getElementById('map'), {
+		// 	zoom: 4,
+		// 	center: myLatLng
+		// });
+
+		// var marker = new google.maps.Marker({
+		// 	position: myLatLng,
+		// 	map: map,
+		// 	title: 'Hello World!'
+		// });
+
+	    for (var i = 0; place = places[i]; i++) {
+				var image = {
+					url: place.icon,
+					size: new google.maps.Size(71, 71),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(17, 34),
+					scaledSize: new google.maps.Size(25, 25)
+				};
+				var marker = new google.maps.Marker({
+					map: map,
+					draggable: true,
+    				animation: google.maps.Animation.DROP,
+					icon: image,
+					title: place.name,
+					position: place.geometry.location
+				});
+					marker.addListener('click', toggleBounce);
+					function toggleBounce() {
+						if (marker.getAnimation() !== null) {
+							marker.setAnimation(null);
+						}else{
+							marker.setAnimation(google.maps.Animation.BOUNCE);
+						}
+					}
+				console.log(place.geometry.location);
+			viewport = place.geometry.viewport;
+			markers.push(marker);
+			bounds.extend(place.geometry.location);
+	    }
+
+    	map.setCenter(bounds.getCenter());
+  	});
+
+
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+    var bounds = map.getBounds();
+    searchBox.setBounds(bounds);
+  });
+}
+
+$(document).ready(function(){
+    $("#apranqatesak").click(function(){
+        $(".aprankappend").append(
+        	"<div class='form-group'><div class='input-group mb-2 mr-sm-2 mb-sm-0'><div class='input-group-addon'>Անվանումը</div><input type='text' class='form-control' id='inlineFormInputGroup' placeholder='Հեռախոս, համակարգիչ, ակսեսուար ...'></div> </div><div class='form-group'><div class='input-group mb-2 mr-sm-2 mb-sm-0'><div class='input-group-addon'>Տեսակ</div><input type='text' class='form-control' id='inlineFormInputGroup' placeholder='Samsung Galaxy s7, Iphone 5s ...'></div></div>  </div><div class='form-group'><div class='input-group mb-2 mr-sm-2 mb-sm-0'><div class='input-group-addon'>Գինը </div><input type='text' class='form-control' id='inlineFormInputGroup' placeholder='AMD USD EURO'></div></div>  </div><div class='form-group'><div class='input-group mb-2 mr-sm-2 mb-sm-0'><div class='input-group-addon'<i class='fa fa-mobile'></i>Հեռախոս </div><input type='text' class='form-control' id='inlineFormInputGroup' placeholder='Լրացնել հետևյալ կարգով 098100100'></div></div> "
+        	);
+    });
+});
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCsfS8yvhtJNEVfk5IaNFW6s8zr6KDrdbw&callback=initMap"></script>

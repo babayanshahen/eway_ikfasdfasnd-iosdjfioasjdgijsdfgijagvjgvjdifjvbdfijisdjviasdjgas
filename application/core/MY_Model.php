@@ -12,11 +12,23 @@ class MY_Model extends CI_Model
     }
     
     
-    // public function getRecords($where = array())
-    // {
-    //     $this->db->where($where);
-    //     return $this->db->get($this->table)->result();
-    // }
+    public function getUser($where = array())
+    {
+        $this->db->where($where);
+        $res = $this->db->get($this->table)->result_object();
+        if(sizeof($res)){
+            return $res['0'];
+        }else{
+            return FALSE;
+        }
+        // if(is_null($res)){
+        //     return FALSE;
+        // }else{
+            // var_dump($res);
+            // return $res['0'];
+        // }
+        // var_dump($res[0]);
+    }
     
     // public function getRecord($id)
     // {

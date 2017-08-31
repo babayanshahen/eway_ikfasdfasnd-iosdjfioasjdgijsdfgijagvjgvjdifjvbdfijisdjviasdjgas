@@ -18,10 +18,10 @@
                     <div class="panel-body">
                     <form role="form" action="<?=base_url('login/doLogin')?>" method="post">
                         <div class="form-group <?=isset($error_mobile) && $error_mobile ? 'has-error' : ''?>">
-                            <input type="text" name="user_mobile_number" id="last_name" class="form-control input-sm" placeholder="Մուտքանուն" <?=isset($usermobile) ? "value=$usermobile" : ''?>>
+                            <input type="text" name="user_login" id="last_name" class="form-control input-sm" placeholder="Մուտքանուն" <?=isset($usermobile) ? "value=$usermobile" : ''?>>
                         </div>
                         <div class="form-group <?=isset($error_email) && $error_email ? 'has-error' : ''?>">
-                            <input type="email" name="user_email" id="email" class="form-control input-sm" placeholder="Գաղտնաբառ" <?=isset($useremail) ? "value=$useremail" : ''?>>
+                            <input type="password" name="user_password" id="user_password" class="form-control input-sm" placeholder="Գաղտնաբառ" <?=isset($useremail) ? "value=$useremail" : ''?>>
                         </div>
                         <input type="submit" value="Մուտք" class="btn btn-block">
                     </form>
