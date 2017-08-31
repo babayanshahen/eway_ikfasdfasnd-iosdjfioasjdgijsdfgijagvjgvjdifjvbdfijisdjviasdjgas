@@ -34,3 +34,16 @@ if (!function_exists('lq')) {
 
     }
 }
+
+function userInfo() 
+{
+    if($_SERVER['HTTP_HOST'] !== 'localhost'){
+        $json       = file_get_contents("http://ipinfo.io/{$_SERVER['REMOTE_ADDR']}");
+        $details    = json_decode($json);
+        if($details->ip !== '::1'){
+            return  array('country'=>$details->country,'city'=> $details->city);
+        }else{
+            return false;
+        }
+    }
+}

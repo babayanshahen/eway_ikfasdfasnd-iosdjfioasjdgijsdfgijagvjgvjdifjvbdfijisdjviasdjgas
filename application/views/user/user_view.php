@@ -11,8 +11,12 @@ color: #b4d250;
 </style>
 
 <div class="container">
-	<div  class='col-md-6'>
+<div  class='col-md-6'>
 	<div class="form-group" >
+		<?php
+			$this->load->helper('form');
+			echo form_open('user/register_product', userInfo()  );
+		?>
 		<div class="dropdown">
 			<button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Նշեք հայտի տեսակը
 			<span class="caret"></span>
@@ -24,21 +28,23 @@ color: #b4d250;
 			</ul>
 		</div>
 	</div>
-		<div class="form-group aprankappend"></div>
-		<div class='form-group' >
-			<div class='input-group mb-2 mr-sm-2 mb-sm-0'>
-				<div class='input-group-addon'>Հասցե</div>
-				<input type='text' class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input" >
-			</div>
+	<div class="form-group aprankappend"></div>
+	<div class='form-group' >
+		<div class='input-group mb-2 mr-sm-2 mb-sm-0'>
+			<div class='input-group-addon'>Հասցե</div>
+			<input type='text' name="userprodgeoparams" class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input" >
+			<input type="hidden" name="lat" class="lat">
+			<input type="hidden" name="lng" class="lng">
 		</div>
-		<button class="btn btn-success" type="button" >Հաստատել
-			</button>
 	</div>
+	<button class="btn btn-success" type="Submit" >Հաստատել</button>
+	<?php echo form_close( ); ?>
+</div>
 			<div id='map' class='col-md-6'></div>
 <script>
 function initMap(){
 	var options = {
-		zoom:7,
+		zoom:15,
 		center:{lat:40.1566055,lng:44.5186327}
 	}
 	var map = new google.maps.Map(document.getElementById('map'),options)
@@ -62,7 +68,7 @@ function initMap(){
 	    var bounds = new google.maps.LatLngBounds();
 	    var place = null;
 	    var viewport = null;
-	    var myLatLng = {lat: -25.363, lng: 131.044};
+	    // var myLatLng = {lat: -25.363, lng: 131.044};
 
 		// var map = new google.maps.Map(document.getElementById('map'), {
 		// 	zoom: 4,
@@ -92,14 +98,23 @@ function initMap(){
 					position: place.geometry.location
 				});
 					marker.addListener('click', toggleBounce);
-					function toggleBounce() {
+					marker.addListener('dragend', ChangeLatLng);
+
+            function ChangeLatLng(event) {
+            		$( ".lat" ).val(event.latLng.lat());
+            		$( ".lng" ).val(event.latLng.lng());
+					}
+					function toggleBounce(event) {
+						alert(event.latLng.lat());
+						// console.log(event.latLng.lat());
 						if (marker.getAnimation() !== null) {
 							marker.setAnimation(null);
 						}else{
 							marker.setAnimation(google.maps.Animation.BOUNCE);
 						}
 					}
-				console.log(place.geometry.location);
+					// console.log(marker.position.lat());
+					// console.log(marker.position.lng());
 			viewport = place.geometry.viewport;
 			markers.push(marker);
 			bounds.extend(place.geometry.location);
@@ -111,6 +126,8 @@ function initMap(){
 
     google.maps.event.addListener(map, 'bounds_changed', function() {
     var bounds = map.getBounds();
+    $(".lat").val(bounds.b.b);
+    $(".lng").val(bounds.b.f);
     searchBox.setBounds(bounds);
   });
 }
