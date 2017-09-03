@@ -5,5 +5,6 @@ class Main extends CI_Controller {
 
 	public function index(){
 		$this->load->template('main/main_view');
+		// $this->load->view('main/welcome_view');
 	}
 }

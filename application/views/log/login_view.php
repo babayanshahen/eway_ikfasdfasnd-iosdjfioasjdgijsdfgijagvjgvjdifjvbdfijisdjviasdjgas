@@ -16,7 +16,7 @@
                     <?=isset($errorline) && $errorline ? '<small>Չեն համընկնում</small>' : ''?>
                     </div>
                     <div class="panel-body">
-                    <form role="form" action="<?=base_url('login/doLogin')?>" method="post">
+                    <form role="form" action="<?=base_url('log/doLogin')?>" method="post">
                         <div class="form-group <?=isset($error_mobile) && $error_mobile ? 'has-error' : ''?>">
                             <input type="text" name="user_login" id="last_name" class="form-control input-sm" placeholder="Մուտքանուն" <?=isset($usermobile) ? "value=$usermobile" : ''?>>
                         </div>

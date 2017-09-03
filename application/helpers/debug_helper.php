@@ -3,11 +3,14 @@
 if (!function_exists('out')) {
     function out($var, $dump = false) {
         echo '<pre>';
-        if ($dump)
+        if ($dump){
             var_dump($var);
-        else
+        }
+        else{
             print_r($var);
+        }
         echo '</pre>';
+        die();
     }
 }
 
