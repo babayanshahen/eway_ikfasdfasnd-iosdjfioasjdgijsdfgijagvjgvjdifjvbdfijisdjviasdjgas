@@ -1,7 +1,3 @@
-function changeButton(event){
-	$("#sel_st_type").html(event.target.innerHTML);
-}
-
 function initMap(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -14,6 +10,13 @@ function initMap(){
             handleLocationError(true, infoWindow, map.getCenter());
           });
 	}
+	
+	
+	
+	
+
+
+            
 	var options = {
 		zoom:16
 	}
@@ -63,10 +66,13 @@ function initMap(){
 					map: map,
 					draggable: true,
     				animation: google.maps.Animation.DROP,
-					icon: image,
+                    icon: 'http://localhost/newproject/images/googlenearest.png',
 					title: place.name,
 					position: place.geometry.location
 				});
+    				$(".lat").val((place.geometry.location.lat()));
+    				$(".lng").val((place.geometry.location.lng()));
+    				// console.log(place.geometry.location.lng());
 					marker.addListener('click', toggleBounce);
 					marker.addListener('dragend', ChangeLatLng);
 
@@ -94,8 +100,8 @@ function initMap(){
 
     google.maps.event.addListener(map, 'bounds_changed', function() {
     var bounds = map.getBounds();
-    $(".lat").val(bounds.b.b);
-    $(".lng").val(bounds.b.f);
+    // $(".lat").val(bounds.f.b);
+    // $(".lng").val(bounds.f.f);
     searchBox.setBounds(bounds);
   });
 }

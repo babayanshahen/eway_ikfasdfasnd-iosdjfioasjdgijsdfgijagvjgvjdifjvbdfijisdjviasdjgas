@@ -1,11 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 if (!function_exists('loadJS')) {
-    function loadJS($files) {
+    function loadJS($files,$dataLoadInJS=null) {
         if (!empty($files) && is_array($files)) {
             foreach ($files as $file=>$params) {
                 if ($params != 'external') {
                     echo '<script src="'.base_url('assets/js/'.$file.'.js').'" type="text/javascript"></script>'."\n";
+                    echo "<script>var base_url = '.$dataLoadInJS.'</script>";
                 } else {
                     echo '<script src="'.$file.'" type="text/javascript"></script>'."\n";
                 }
