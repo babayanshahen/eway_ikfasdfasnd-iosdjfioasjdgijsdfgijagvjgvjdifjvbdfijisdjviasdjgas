@@ -10,15 +10,8 @@ function initMap(){
             handleLocationError(true, infoWindow, map.getCenter());
           });
 	}
-	
-	
-	
-	
-
-
-            
 	var options = {
-		zoom:16
+		zoom:14
 	}
 	var map = new google.maps.Map(document.getElementById('map'),options)
 	var myloc = new google.maps.Marker({
@@ -28,6 +21,7 @@ function initMap(){
         map: map
 	});
 
+	var input = (document.getElementById('pac-input1'));
 	var input = (document.getElementById('pac-input'));
     var searchBox = new google.maps.places.SearchBox((input));
 

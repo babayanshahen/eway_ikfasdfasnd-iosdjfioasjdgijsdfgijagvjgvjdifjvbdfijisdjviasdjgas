@@ -19,22 +19,20 @@
 		<div class="container">
 			<div  class='col-md-12'>
 				<div class="form-group" >
-					<img src="<?=base_url('images/EasyWay.jpg')?>" alt="Eway_armenia" with="150px" height="150px"  >
-					<div class="alert alert-success"> Բարի Գալուստ <strong>E-way</strong>
-						<br>
+					<div class="alert alert-success text-center">
+						<h2>ՇՈՒՏՈՎ</h2>
+						<h3>EWAY</h3>
 					</div>
-					<div class="alert alert-info"><strong>Իմացիր</strong></br>
-						Այստեղ դու կարող ես հեշտությամբ գտնել քեզ հետաքրքրող գրեթե ամեն ինչ.<br>
-						<ul class="list-unstyled ">
-							<li>• Հեռախոս</li>
-							<li>• Համակարգիչ</li>
-							<li>• Պլանշետ</li>
-						</ul>
-						Գտիր նաև մոտակայքում </br>
-						• Մթերային խանութ</br>
-						• Հագուստի Սրահ </br>
-						• Ավտոտեխսպասարկման կենտրոններ </br>
-						• Վարձակալությամբ տրվող բնակարաններ </br>	
+					<div class="alert alert-info text-center">
+						<h2> ՏԵՂԵԿԱՑՐՈՒ ՔՈ  ՄԱՍԻՆ</h2>
+					<img  src="<?=base_url('images/menq.png')?>" alt="Eway_armenia" with="300px" height="319"   >
+						<h2 class="text-center">__________</h2>
+						<h2> ԳՏԻՐ ՄՈՏԱԿԱՅՔՈՒՄ</h2>
+						<h2 class='text-center'>• Մթերային խանութ</h2>
+						<h2 class="text-center">• Հագուստի Սրահ </h2>
+						<h2 class="text-center">• Ավտոտեխսպասարկման կենտրոններ </h2>
+						<h2 class="text-center">• Վարձակալությամբ տրվող բնակարաններ </h2>	
+						<h2 class="text-center">• Telcell, EpaY ապարատներ </h2>
 					</div>
 				</div>
 			</div>

@@ -1,3 +1,6 @@
+<link href=    "<?=base_url('assets/css/searchdiv.css')?>" rel="stylesheet">
+<!-- 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
 <style>
         #map{
             height: 400px;
@@ -9,33 +12,115 @@
 </style>
 <div class="container">
 <div class="row">
-    <div class="col-md-8" >
-        <div class="img-responsive" id="map" ></div>
-        <hr>
-        <!-- <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header"> Easy way
-                <small>Գտի՝ր այն ինչ որոնում ես, հեշտությամբ</small>
-                </h1>
-            </div>
-        </div> -->
-    </div>
-    <div class="col-md-4">
-        <!-- <p>Մուտքագրիր այն ինչ քեզ պետք է հիմա</p> -->
+    <div class="col-md-12">
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
             <input name="search_product" type="text" ng-model="getProduct" class="form-control" placeholder="Մուտքագրիր այն ինչ քեզ պետք է հիմա" id="inp_search_product">
-            <!-- <button  class="btn btn-default" id="search_product" >Submit</button> -->
-            <div class="input-group-addon greeen-color" id="search_product">Գտնել
-            </div>
+            <div class="input-group-addon greeen-color" id="search_product">Գտնել</div>
         </div>
-        <div id="search_res"  class="list-group pre-scrollable" style="margin-top:24px"></div>
+        <div id="search_res"  class="list-group pre-scrollable" style="margin-top:24px">
+        </div> 
+    </div>
+    <div class="col-md-12" >
+        <div class="img-responsive" id="map" ></div>
     </div>
 </div>
+<br>
   
+<div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2 col-sm-3">
+                <a onclick="ViewAllShop()" href="javascript:void(0)">
+                <div class="progress">
+                    <div class="progress-value">
+                        <img src="<?=base_url('images/icons/shop.png')?>" alt="shops_in-armenia" with="70px" height="70px">
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3">
+                <div class="progress">
+                    <div class="progress-value">
+                        <img src="<?=base_url('images/icons/car_wash.png')?>" alt="car_wash NEAR ME" with="80px" height="80px">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <a onclick="" href="javascript:void(0)">
+                <div class="progress">
+                    <div class="progress-value">
+                        <img src="<?=base_url('images/icons/car_technical.png')?>" alt="car_technical_support" with="70px" height="70px">
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <a onclick="" href="javascript:void(0)">
+                <div class="progress">
+                    <div class="progress-value">
+                        <img src="<?=base_url('images/icons/rent_home.png')?>" alt="car_technical_support" with="80px" height="80px">
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <a onclick="" href="javascript:void(0)">
+                <div class="progress">
+                    <div class="progress-value">
+                        <img src="<?=base_url('images/icons/terminal.png')?>" alt="paying now" with="135px" height="135px">
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <a onclick="" href="javascript:void(0)">
+                <div class="progress">
+                    <div class="progress-value">
+                        <img src="<?=base_url('images/icons/hotel.png')?>" alt="hotel armenia now" with="50px" height="50px">
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                        <a onclick="" href="javascript:void(0)">
+                        <div class="progress">
+                            <div class="progress-value">
+                                <img src="<?=base_url('images/icons/beauty-salon.png')?>" alt="beuty salon armenia" with="50px" height="50px">
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <a onclick="" href="javascript:void(0)">
+                        <div class="progress">
+                            <div class="progress-value">
+                                <img src="<?=base_url('images/icons/restaurant.png')?>" alt="restaurant near me" with="80px" height="80px">
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <a onclick="" href="javascript:void(0)">
+                        <div class="progress">
+                            <div class="progress-value">
+                                <img src="<?=base_url('images/icons/services.png')?>" alt="services near me" with="80px" height="80px">
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+            
+        </div>
+</div>
+
+<?php
+            loadJS(array(
+                        'statement' =>'statement.js'
+                        ),base_url()
+            )
+        ?>
 <script>
     function initMap() {
         var options = {
-            zoom: 16,
+            zoom: 14,
             center: {lat: -34.397, lng: 150.644},
         }
 
@@ -117,8 +202,6 @@
                         var searched_lng = parseFloat(value.e_lng)
                         var current_lat = initialLocation.lat()
                         var current_lng = initialLocation.lng()
-                        // console.log(current_lng+'asdasdas');
-                        console.log(current_lat);
                         var distance = Math.sqrt(Math.pow(current_lng - searched_lng, 2) + Math.pow(current_lat - searched_lat, 2))
                         var timedistance =  Math.round(distance * 13 /  0.02631798049107498)
 
@@ -131,17 +214,16 @@
                         });
                         
                         gmarkers.push(marker);
-                        var searched_lat = parseFloat(value.e_lat)
-                        var searched_lng = parseFloat(value.e_lng)
+                        // var searched_lat = parseFloat(value.e_lat)
+                        // var searched_lng = parseFloat(value.e_lng)
                         var current_lat = initialLocation.lat()
                         var current_lng = initialLocation.lng()
                         var distance = Math.sqrt(Math.pow(current_lng - searched_lng, 2) + Math.pow(current_lat - searched_lat, 2))
 
                         gdistance.push(distance);
                         var timedistance =  Math.round(distance * 13 /  0.02631798049107498)
-
                         $("#search_res").append(
-                        '<div style="margin-top:10px" class="input-group"><span class="input-group-addon" id="basic-addon1" ><span class="glyphicon glyphicon-user"></span></span><input readonly type="text" class="form-control" placeholder="'+value.user_name+' '+value.user_lastname+'" aria-describedby="basic-addon1"></div>'+
+                        '<div style="margin-top:10px" class="input-group"><span class="input-group-addon" id="basic-addon1" ><span class="glyphicon glyphicon-user"></span></span><input readonly type="text" class="form-control" placeholder="'+value.user_nick+'" aria-describedby="basic-addon1"></div>'+
                         '<div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-map-marker"></span></span><input readonly type="text" class="form-control" placeholder="'+value.e_address+'" aria-describedby="basic-addon1"></div>'+
                         '<div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-ruble"></span></span><input readonly type="text" class="form-control" placeholder="'+value.e_product_price+'" aria-describedby="basic-addon1"></div>'+
                         '<div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-phone"></span></span><input readonly type="text" class="form-control" placeholder="'+value.e_pnumber+'" aria-describedby="basic-addon1"></div>'+

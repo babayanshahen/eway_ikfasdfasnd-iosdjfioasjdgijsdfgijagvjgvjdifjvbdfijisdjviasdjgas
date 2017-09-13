@@ -51,10 +51,18 @@
                     <div id="sectionA" class="tab-pane fade  <?= $logactive? 'in active'  : '' ?>">
                         <div class="innter-form">
                             <form action="<?=base_url('log/doLogin')?>" class="sa-innate-form" method="post">
-                                <label>Մուտքանուն</label>
-                                <input type="text" name="user_login">
-                                <label>Գաղտնաբառ</label>
-                                <input type="password" name="user_password">
+                                    <div class="input-group input-group-lg margin-bottom-sm">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input class="form-control" type="text" name="user_login" placeholder="Մուտքանուն">
+                                    </div>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-lock"></span>
+                                        </span>
+                                        <input class="form-control" type="password" name="user_password" placeholder="Գաղտնաբառ">
+                                    </div>
                                 <button type="submit">Մուտք</button>
                                 <!-- <a href="">Forgot Password?</a> -->
                             </form>

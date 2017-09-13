@@ -27,7 +27,7 @@ color: #b4d250;
 			?>
 			<div class="dropdown form-group">
 				<select  id="sel_st_type"  class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" name="statement">
-				<option value="0">Ընտրել տեսակը</option>
+					<option value="0">Ընտրել տեսակը</option>
 					<?php foreach ($statement as $statement): ?>
 					<option value="<?=$statement->e_stm_value?>"> <?= $statement->e_stm_name ?></option>
 					<?php endforeach; ?>
@@ -35,11 +35,12 @@ color: #b4d250;
 			</div>
 			<div class="form-group appending_item"></div>
 			<div class='form-group' >
-				<div class='input-group mb-2 mr-sm-2 mb-sm-0'>
-					<div class='input-group-addon'>Հասցե</div>
-					<input type='text' name="e_address" class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input" >
+				<div class='input-group mb-2 mr-sm-2 mb-sm-0 addres_for_add' >
+					<div class='input-group-addon'><span class='glyphicon glyphicon-map-marker'></span></div>
+					<input type='text' name="e_address" class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input">
 					<input type="hidden" name="lat" class="lat">
 					<input type="hidden" name="lng" class="lng">
+					<div class="input-group-addon " onclick="AddAddress()">Ավելացնել հասցե</div>
 				</div>
 			</div>
 		</div>

@@ -24,13 +24,13 @@ $( document ).on('change', '.dropdown', function(e) {
         	"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
 					"<div class='input-group-addon'>Անվանումը</div>"+
-					"<input type='text' name='e_product_name' class='form-control' placeholder='Yerevan City'>"+
+					"<input type='text' name='e_shop_name' class='form-control' placeholder='Yerevan City'>"+
 				"</div>"+
 			"</div>"+
 			"<div class='form-group'>"+
 				"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
 					"<div class='input-group-addon '>Տեսակ</div>"+
-						"<select class='form-control 'id='shop_type'  >"+
+						"<select class='form-control 'id='shop_type' name='shop_type' >"+
 						"</select>"+
 				"</div>"+
         	"</div>"+
@@ -40,13 +40,107 @@ $( document ).on('change', '.dropdown', function(e) {
         	"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
 					"<div class='input-group-addon'>Աշխ Ժամ</div>"+
-					"<input type='time' name='e_product_name' class='form-control time_input' >"+
-					"<input type='time' name='e_product_name' class='form-control time_input' >"+
+					"<input type='time' name='e_time_1' class='form-control time_input' >"+
+					"<input type='time' name='e_time_2' class='form-control time_input' >"+
 				"</div>"+
 			"</div>"
         	);
 	}
+	if($('select[name=statement]').val() == '3'){
+		$(".appending_item").html(
+        	"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Անվանումը</div>"+
+					"<input type='text' name='e_shop_name' class='form-control' placeholder='Sonax'>"+
+				"</div>"+
+			"</div>"+
+			
+			"<div class='checkbox'>"+
+			  "<label ><input type='checkbox' value='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+			"</div>"+
+        	"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Աշխ Ժամ</div>"+
+					"<input type='time' name='e_time_1' class='form-control time_input' >"+
+					"<input type='time' name='e_time_2' class='form-control time_input' >"+
+				"</div>"+
+			"</div>"
+        	);
+	}
+	if($('select[name=statement]').val() == '4'){
+		$(".appending_item").html(
+        	"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Անվանումը</div>"+
+					"<input type='text' name='e_shop_name' class='form-control' placeholder='Doctor car'>"+
+				"</div>"+
+			"</div>"+
+			
+			"<div class='checkbox'>"+
+			  "<label ><input type='checkbox' value='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+			"</div>"+
+        	"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Աշխ Ժամ</div>"+
+					"<input type='time' name='e_time_1' class='form-control time_input' >"+
+					"<input type='time' name='e_time_2' class='form-control time_input' >"+
+				"</div>"+
+			"</div>"
+        	);
+	}
+
+	if($('select[name=statement]').val() == '5'){
+		$(".appending_item").html(
+				"<ul class='nav nav-tabs'>"+
+                    "<li class=''><a href='javascript:void(0)' onclick= 'setvalueHomeS()' data-toggle='tab' style='background-color:#5cb85c' >Սեփական</a></li>"+
+                    "<li class=''><a href='javascript:void(0)' onclick= 'setvalueHomeP()' data-toggle='tab' style='background-color:#5cb85c' >Շենք</a></li>"+
+					"<input type='hidden' id='setvalueHomeType' name='rent_type'>"+
+                "</ul>"+
+                "<div class='form-group'>"+
+	        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+						"<div class='input-group-addon'><i class='glyphicon glyphicon-usd'></i></div>"+
+						"<input type='text' name='e_rend_price' class='form-control' placeholder='100.000 ԴՐԱՄ'>"+
+					"</div>"+
+				"</div>"
+        	);
+	}
+
+	if($('select[name=statement]').val() == '7'){
+		$(".appending_item").html(
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Անվանում. <i class='glyphicon-glyphicon-home'></i></div>"+
+					"<input type='text' name='e_hotel_name' class='form-control' placeholder='Sasuntsi Davit Hotel'>"+
+				"</div>"+
+			"</div>"+
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Հեռ. <i class='glyphicon glyphicon-phone'></i></div>"+
+					"<input type='number' name='e_pnumber' class='form-control' placeholder='0XX - XXXXXX'>"+
+				"</div>"+
+			"</div>"
+        	);
+	}
+
+	if($('select[name=statement]').val() == '8'){
+		$(".appending_item").html(
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Անվանում. <i class='glyphicon-glyphicon-home'></i></div>"+
+					"<input type='text' name='e_salon_name' class='form-control' placeholder='Lika'>"+
+				"</div>"+
+			"</div>"+
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Հեռ. <i class='glyphicon glyphicon-phone'></i></div>"+
+					"<input type='number' name='e_pnumber' class='form-control' placeholder='0XX - XXXXXX'>"+
+				"</div>"+
+			"</div>"
+        	);
+	}
+
 });
+
 function SetdisableORenable() {
 	if($(".time_input").attr("disabled") == 'disabled'){
 		$("input").removeAttr('disabled');
@@ -54,3 +148,33 @@ function SetdisableORenable() {
     	$(".time_input").attr("disabled", 'disabled');
 	}
 }
+
+function setvalueHomeS(){
+	$("#setvalueHomeType").attr("value", 'sepakan');
+}
+
+function setvalueHomeP(){
+	$("#setvalueHomeType").attr("value", 'shenq');
+}
+
+function deleteAdd(){
+	$(".appended_add").remove()
+	// console.log(e.target)
+	// $(this).remove();
+	// $(target).remove()
+}
+
+function AddAddress() {
+    $(".appending_item").append(
+        "<div class='form-group appended_add'>" +
+        "<div class='input-group mb-2 mr-sm-2 mb-sm-0'>" +
+        "<div class='input-group-addon'>Հասցե <span class='glyphicon glyphicon-map-marker'></span>" +
+        "</div>" +
+        "<input value="+$("[name='e_address']").val()+" type='text' id= 'pac-input1' name='e_adress' class='form-control'  placeholder='Նշել հավելյալ հասցե'>" +
+        "<div class='input-group-addon' onclick='deleteAdd()'>Ջնջել <span class='glyphicon glyphicon-remove'></span>" +
+        "</div>" +
+        "</div>" +
+        "<div class='form-group'>"
+    );
+}
+
