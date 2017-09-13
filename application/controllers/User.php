@@ -42,17 +42,18 @@ class User extends CI_Controller {
 					break;
 
 					case '2':
-					$this->register_product_model->insert( array(
+					$this->load->model('shop_model');
+					$this->shop_model->insert( array(
 						'e_user_id' =>  $this->auth->getUser()->id,  
-						'e_product_name' => $this->input->post('e_shop_name'),
-						'e_product_type' => $this->input->post('shop_type'),
+						'e_shop_name' => $this->input->post('e_shop_name'),
+						'e_shop_type' => $this->input->post('shop_type'),
 						// 'e_product_price' => $this->input->post('e_product_price'),
 						'e_time_1' => $this->input->post('e_time_1'),
 						'e_time_2' => $this->input->post('e_time_2'),
 						'e_lat' => $this->input->post('lat'),
 						'e_lng' => $this->input->post('lng'),
 						'e_address' =>  $this->input->post('e_address'),
-						// 'e_pnumber' =>   $this->input->post('e_pnumber')
+						'e_24hour' =>   $this->input->post('round_the_clock')
 						));
 					redirect('user', 'location');
 					break;

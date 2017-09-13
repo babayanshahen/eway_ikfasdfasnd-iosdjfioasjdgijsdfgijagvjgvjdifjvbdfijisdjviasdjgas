@@ -35,7 +35,7 @@ $( document ).on('change', '.dropdown', function(e) {
 				"</div>"+
         	"</div>"+
 			"<div class='checkbox'>"+
-			  "<label ><input type='checkbox' value='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+			  "<label ><input type='checkbox' name='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
 			"</div>"+
         	"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
@@ -144,8 +144,13 @@ $( document ).on('change', '.dropdown', function(e) {
 function SetdisableORenable() {
 	if($(".time_input").attr("disabled") == 'disabled'){
 		$("input").removeAttr('disabled');
+    	$("input[name=round_the_clock]").val("OFF");
 	}else{
+		$("input[name=e_time_1]").val('');
+		$("input[name=e_time_2]").val('');
     	$(".time_input").attr("disabled", 'disabled');
+    	$("input[name=round_the_clock]").val("ON");
+
 	}
 }
 

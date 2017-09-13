@@ -32,4 +32,9 @@ class Main extends CI_Controller {
 		// out($this->db->last_query());
 		// out($sresult);
 	}
+	public function searcshop(){
+		$this->load->model('shop_model');
+		$sresults = $this->shop_model->getShopswithshopsname();
+		echo json_encode($sresults);
+	}
 }

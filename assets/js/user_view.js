@@ -21,7 +21,6 @@ function initMap(){
         map: map
 	});
 
-	var input = (document.getElementById('pac-input1'));
 	var input = (document.getElementById('pac-input'));
     var searchBox = new google.maps.places.SearchBox((input));
 

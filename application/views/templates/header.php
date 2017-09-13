@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>E-way - Start E-way</title>
+    <title>Easy way </title>
     <link href="<?=base_url('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?=base_url('bootstrap/css/portfolio-item.css')?>" rel="stylesheet">
     <link rel="shortcut icon" href="<?=base_url('images/logo.png')?>" type="image/png">

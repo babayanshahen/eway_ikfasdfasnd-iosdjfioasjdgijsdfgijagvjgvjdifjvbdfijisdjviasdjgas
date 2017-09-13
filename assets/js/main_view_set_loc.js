@@ -1,6 +1,5 @@
 $(document).ready(function() {
     var input = (document.getElementById('pac-input'));
-    console.log(input);
     var searchBox = new google.maps.places.SearchBox((input));
     google.maps.event.addListener(searchBox, 'places_changed', function() {
         var places = searchBox.getPlaces();
@@ -62,7 +61,7 @@ $(document).ready(function() {
             }
             // console.log(marker.position.lat());
             // console.log(marker.position.lng());
-            viewport = place.geometry.viewport;
+            // viewport = place.geometry.viewport;
             // markers.push(marker);
             bounds.extend(place.geometry.location);
         }
