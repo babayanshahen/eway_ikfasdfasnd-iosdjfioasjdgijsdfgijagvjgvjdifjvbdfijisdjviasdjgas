@@ -27,8 +27,8 @@
                 </div>
                 </a>
             </div>
-            <div class="col-md-2 col-sm-3">
-                <a onclick="" href="javascript:void(0)">
+            <div class="col-md-2 col-sm-3" >
+                <a onclick="" href="javascript:void(0)" id="searchhotel">
                 <div class="progress">
                     <div class="progress-value">
                         <img src="<?=base_url('images/icons/hotel.png')?>" alt="hotel armenia now" with="50px" height="50px">
@@ -37,7 +37,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-3">
-                        <a onclick="" href="javascript:void(0)">
+                        <a onclick="" href="javascript:void(0)" id="searchsalon">
                         <div class="progress">
                             <div class="progress-value">
                                 <img src="<?=base_url('images/icons/beauty-salon.png')?>" alt="beuty salon armenia" with="50px" height="50px">
@@ -46,7 +46,7 @@
                         </a>
                     </div>
                     <div class="col-md-2 col-sm-3">
-                        <a onclick="" href="javascript:void(0)">
+                        <a onclick="" href="javascript:void(0)" id="searchrestorant">
                         <div class="progress">
                             <div class="progress-value">
                                 <img src="<?=base_url('images/icons/restaurant.png')?>" alt="restaurant near me" with="80px" height="80px">
@@ -153,8 +153,18 @@
                     google.maps.event.addListener(marker, 'dragend', dragged)
                 });
         }
+    // var markers = [];
+    // function deleteOldMarkers(){
+    //     for (i = 0; i < markers.length; i++) {
+    //         markers[i].setMap(null);
+    //     }
+    // }
+    markers = [];
     $(document).ready(function() {
         $("#searchshop").click(function() {
+        for (i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
             $.ajax({
                 url: "<?=base_url('main/searcshop ')?>",
                 dataType: "json",
@@ -172,7 +182,7 @@
                             },
                             map: map
                         });
-                        console.log(value)
+                        markers.push(marker);
                         if(value.e_24hour !== 'ON'){
                             var e_24hour = value.e_time_1+' - '+value.e_time_2
                         }else{
@@ -191,93 +201,112 @@
                 }
             })
         });
+        $("#searchhotel").click(function() {
+            for (i = 0; i < markers.length; i++) {
+               markers[i].setMap(null);
+            }
+            $.ajax({
+                url: "<?=base_url('main/searchotel')?>",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data, function(key, value) {
+                        var marker = new google.maps.Marker({
+                            clickable: true,
+                            // draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            shadow: true,
+                            icon: "<?='images/googlenearest.png'?>",
+                            position: {
+                                lat: parseFloat(value.e_lat),
+                                lng: parseFloat(value.e_lng)
+                            },
+                            map: map
+                        });
+                        markers.push(marker)
+                        var infowindow = new google.maps.InfoWindow({
+                            content: '<div>Տեսակ - <span>' + value.e_hotel_name + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_address + '</span></div>' +
+                                '<div>Հեռ - <span>' + value.e_pnumber + '</span></div>' 
+                        });
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    })
+                }
+            })
+        });
+        $("#searchsalon").click(function() {
+            for (i = 0; i < markers.length; i++) {
+               markers[i].setMap(null);
+            }
+            $.ajax({
+                url: "<?=base_url('main/searchsalon')?>",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        var marker = new google.maps.Marker({
+                            clickable: true,
+                            // draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            shadow: true,
+                            icon: "<?='images/googlenearest.png'?>",
+                            position: {
+                                lat: parseFloat(value.e_lat),
+                                lng: parseFloat(value.e_lng)
+                            },
+                            map: map
+                        });
+                        markers.push(marker)
+                        var infowindow = new google.maps.InfoWindow({
+                            content: '<div>Անվանում - <span>' + value.e_salon_name + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_address + '</span></div>' +
+                                '<div>Հեռ - <span>' + value.e_pnumber + '</span></div>' 
+                        });
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    })
+                }
+            })
+        });
+        $("#searchrestorant").click(function() {
+            for (i = 0; i < markers.length; i++) {
+               markers[i].setMap(null);
+            }
+            $.ajax({
+                url: "<?=base_url('main/searchsalon')?>",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        var marker = new google.maps.Marker({
+                            clickable: true,
+                            // draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            shadow: true,
+                            icon: "<?='images/googlenearest.png'?>",
+                            position: {
+                                lat: parseFloat(value.e_lat),
+                                lng: parseFloat(value.e_lng)
+                            },
+                            map: map
+                        });
+                        markers.push(marker)
+                        var infowindow = new google.maps.InfoWindow({
+                            content: '<div>Անվանում - <span>' + value.e_salon_name + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_address + '</span></div>' +
+                                '<div>Հեռ - <span>' + value.e_pnumber + '</span></div>' 
+                        });
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    })
+                }
+            })
+        });
+        
     })
-    // $(document).ready(function() {
-    //     $("#search_product").click(function() {
-
-    //     });
-    // });
-
-    // var gmarkers = [];
-    // var gdistance = [];
-//     $(document).ready(function() {
-//         $("#search_product").click(function() {
-//                 $("#search_res").empty();
-//             function removeMarkers() {
-//                 for (i = 0; i < gmarkers.length; i++) {
-//                     gmarkers[i].setMap(null);
-//                 }
-//             }
-//             removeMarkers();
-//             $.ajax({
-//                 type: 'POST',
-//                 url: "<?=base_url('main/searchproduct ')?>",
-//                 dataType: "json",
-//                 data: {
-//                     'search_product': $("#inp_search_product").val()
-//                 },
-//                 success: function(msg) {
-//                     $.each(msg, function(key, value) {
-//                         // console.log(msg);
-//                         var marker = new google.maps.Marker({
-//                             clickable: true,
-//                             // draggable: true,
-//                             animation: google.maps.Animation.DROP,
-//                             shadow: true,
-//                             icon: "<?='images/googlenearest.png'?>",
-//                             position: {
-//                                 lat: parseFloat(value.e_lat),
-//                                 lng: parseFloat(value.e_lng)
-//                             },
-//                             map: map
-//                         });
-//                         var searched_lat = parseFloat(value.e_lat)
-//                         var searched_lng = parseFloat(value.e_lng)
-//                         var current_lat = initialLocation.lat()
-//                         var current_lng = initialLocation.lng()
-//                         // console.log(current_lat);
-//                         var distance = Math.sqrt(Math.pow(current_lng - searched_lng, 2) + Math.pow(current_lat - searched_lat, 2))
-//                         var timedistance =  Math.round(distance * 13 /  0.02631798049107498)
-
-
-//                         var infowindow = new google.maps.InfoWindow({
-//                             content: '<div>Հասցե:  '+value.e_address+'</br>Հեռ:  '+value.e_pnumber +'</br>Գին: '+value.e_product_price +'</br>Մոտավորապես: '+timedistance +' Րոպե</div>'
-//                         });
-//                         marker.addListener('click', function() {
-//                             infowindow.open(map, marker);
-//                         });
-                        
-//                         gmarkers.push(marker);
-//                         // var searched_lat = parseFloat(value.e_lat)
-//                         // var searched_lng = parseFloat(value.e_lng)
-//                         var current_lat = initialLocation.lat()
-//                         var current_lng = initialLocation.lng()
-//                         var distance = Math.sqrt(Math.pow(current_lng - searched_lng, 2) + Math.pow(current_lat - searched_lat, 2))
-
-//                         gdistance.push(distance);
-//                         var timedistance =  Math.round(distance * 13 /  0.02631798049107498)
-//                         $("#search_res").append(
-//                         '<div style="margin-top:10px" class="input-group"><span class="input-group-addon" id="basic-addon1" ><span class="glyphicon glyphicon-user"></span></span><input readonly type="text" class="form-control" placeholder="'+value.user_nick+'" aria-describedby="basic-addon1"></div>'+
-//                         '<div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-map-marker"></span></span><input readonly type="text" class="form-control" placeholder="'+value.e_address+'" aria-describedby="basic-addon1"></div>'+
-//                         '<div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-ruble"></span></span><input readonly type="text" class="form-control" placeholder="'+value.e_product_price+'" aria-describedby="basic-addon1"></div>'+
-//                         '<div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-phone"></span></span><input readonly type="text" class="form-control" placeholder="'+value.e_pnumber+'" aria-describedby="basic-addon1"></div>'+
-//                         '<div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-road"></span></span><input readonly type="text" class="form-control" placeholder="Մոտավորապես '+timedistance+' Րոպե  " aria-describedby="basic-addon1"></div>'
-
-//                             )
-//                     });
-//                 }
-//             });
-// var gdistance = [];
-//    // var gdistance = [3 , 6, 2, 56, 32, 5, 89, 32];
-
-
-
-
-//         });
-//     });
-
-
-
     }
     
 

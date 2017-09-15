@@ -37,4 +37,18 @@ class Main extends CI_Controller {
 		$sresults = $this->shop_model->getShopswithshopsname();
 		echo json_encode($sresults);
 	}
+
+	public function searchotel(){
+		$this->load->model('hotels_model');
+		$sresults = $this->hotels_model->getRecords();
+		// $sresults = $this->shop_model->getShopswithshopsname();
+		echo json_encode($sresults);
+	}
+
+	public function searchsalon(){
+		$this->load->model('beauty_salon_model');
+		$sresults = $this->beauty_salon_model->getRecords();
+		// $sresults = $this->shop_model->getShopswithshopsname();
+		echo json_encode($sresults);
+	}
 }
