@@ -6,7 +6,7 @@ if (!function_exists('loadJS')) {
             foreach ($files as $file=>$params) {
                 if ($params != 'external') {
                     echo '<script src="'.base_url('assets/js/'.$file.'.js').'" type="text/javascript"></script>'."\n";
-                    echo "<script>var base_url = '.$dataLoadInJS.'</script>";
+                    echo "<script>var base_url = '$dataLoadInJS'</script>";
                 } else {
                     echo '<script src="'.$file.'" type="text/javascript"></script>'."\n";
                 }

@@ -6,6 +6,7 @@ $( document ).on('change', '.dropdown', function(e) {
 
 	}
 	if ($('select[name=statement]').val() == '2'){
+		            		console.log(base_url+'user/getTypes/shops');
 		        $.ajax({
 		            url:  base_url+'user/getTypes/shops',
 		            success: function(data) {
@@ -35,7 +36,7 @@ $( document ).on('change', '.dropdown', function(e) {
 				"</div>"+
         	"</div>"+
 			"<div class='checkbox'>"+
-			  "<label ><input type='checkbox' name='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+			  "<label ><input type='checkbox' name='round_the_clock'  onclick='SetdisableORenable()'>24 ժամ</label>"+
 			"</div>"+
         	"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
@@ -46,17 +47,17 @@ $( document ).on('change', '.dropdown', function(e) {
 			"</div>"
         	);
 	}
+	// carwash
 	if($('select[name=statement]').val() == '3'){
 		$(".appending_item").html(
         	"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
 					"<div class='input-group-addon'>Անվանումը</div>"+
-					"<input type='text' name='e_shop_name' class='form-control' placeholder='Sonax'>"+
+					"<input type='text' name='e_name' class='form-control' placeholder='Sonax'>"+
 				"</div>"+
 			"</div>"+
-			
 			"<div class='checkbox'>"+
-			  "<label ><input type='checkbox' value='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+			  "<label ><input type='checkbox' name='round_the_clock'  onclick='SetdisableORenable()'>24 ժամ</label>"+
 			"</div>"+
         	"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
@@ -99,7 +100,24 @@ $( document ).on('change', '.dropdown', function(e) {
                 "<div class='form-group'>"+
 	        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
 						"<div class='input-group-addon'><i class='glyphicon glyphicon-usd'></i></div>"+
+						"<input type='text' name='e_pnumber' class='form-control' placeholder='0XX XXXXXX'>"+
+					"</div>"+
+				"</div>"+
+                "<div class='form-group'>"+
+	        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+						"<div class='input-group-addon'><i class='glyphicon glyphicon-usd'></i></div>"+
 						"<input type='text' name='e_rend_price' class='form-control' placeholder='100.000 ԴՐԱՄ'>"+
+					"</div>"+
+				"</div>"
+        	);
+	}
+	//terminal
+	if($('select[name=statement]').val() == '6'){
+		$(".appending_item").html(
+                "<div class='form-group'>"+
+	        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+						"<div class='input-group-addon'>Տեսակ</div>"+
+						"<input type='text' name='e_type' class='form-control' placeholder='E-PAY,TellCell ... '>"+
 					"</div>"+
 				"</div>"
         	);
@@ -128,6 +146,23 @@ $( document ).on('change', '.dropdown', function(e) {
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
 					"<div class='input-group-addon'>Անվանում. <i class='glyphicon-glyphicon-home'></i></div>"+
 					"<input type='text' name='e_salon_name' class='form-control' placeholder='Lika'>"+
+				"</div>"+
+			"</div>"+
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Հեռ. <i class='glyphicon glyphicon-phone'></i></div>"+
+					"<input type='number' name='e_pnumber' class='form-control' placeholder='0XX - XXXXXX'>"+
+				"</div>"+
+			"</div>"
+        	);
+	}
+
+	if($('select[name=statement]').val() == '10'){
+		$(".appending_item").html(
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Անվանում. <i class='glyphicon-glyphicon-home'></i></div>"+
+					"<input type='text' name='e_name' class='form-control' placeholder='Shant'>"+
 				"</div>"+
 			"</div>"+
 			"<div class='form-group'>"+

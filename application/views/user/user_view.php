@@ -40,7 +40,7 @@ color: #b4d250;
 					<input type='text' name="e_address" class='form-control controls' placeholder="Երևան շինարարների 14" id="pac-input">
 					<input type="hidden" name="lat" class="lat">
 					<input type="hidden" name="lng" class="lng">
-					<div class="input-group-addon " onclick="AddAddress()">Ավելացնել հասցե</div>
+					<!-- <div class="input-group-addon " onclick="AddAddress()">Ավելացնել հասցե</div> -->
 				</div>
 			</div>
 		</div>
@@ -57,8 +57,8 @@ color: #b4d250;
 </div>
 			<?php
 				loadJS(array( 
-								'user_view' =>'user_view.js'
-					)
+						'user_view' =>'user_view.js'
+					),base_url()
 				) 
 			?>
 			<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCsfS8yvhtJNEVfk5IaNFW6s8zr6KDrdbw&callback=initMap"></script> -->

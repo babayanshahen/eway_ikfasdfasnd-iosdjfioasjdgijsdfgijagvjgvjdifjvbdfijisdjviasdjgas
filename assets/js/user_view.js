@@ -59,7 +59,7 @@ function initMap(){
 					map: map,
 					draggable: true,
     				animation: google.maps.Animation.DROP,
-                    icon: 'http://localhost/newproject/images/googlenearest.png',
+                    icon: base_url+'/images/googlenearest.png',
 					title: place.name,
 					position: place.geometry.location
 				});

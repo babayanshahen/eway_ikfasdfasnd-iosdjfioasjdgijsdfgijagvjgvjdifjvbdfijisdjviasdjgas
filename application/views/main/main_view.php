@@ -40,7 +40,7 @@
                         <a onclick="" href="javascript:void(0)" id="searchsalon">
                         <div class="progress">
                             <div class="progress-value">
-                                <img src="<?=base_url('images/icons/beauty-salon.png')?>" alt="beuty salon armenia" with="50px" height="50px">
+                                <img src="<?=base_url('images/icons/beauty-salon.png')?>" alt="beuty salon armenia" with="100px" height="100px">
                             </div>
                         </div>
                         </a>
@@ -55,7 +55,7 @@
                         </a>
                     </div>
             <div class="col-md-2 col-sm-3">
-                <a onclick="" href="javascript:void(0)">
+                <a onclick="" href="javascript:void(0)" id="searchrenthome">
                 <div class="progress">
                     <div class="progress-value">
                         <img src="<?=base_url('images/icons/rent_home.png')?>" alt="car_technical_support" with="80px" height="80px">
@@ -64,7 +64,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-3">
-                <a onclick="" href="javascript:void(0)">
+                <a onclick="" href="javascript:void(0)" id="searchterminal">
                 <div class="progress">
                     <div class="progress-value">
                         <img src="<?=base_url('images/icons/terminal.png')?>" alt="paying now" with="135px" height="135px">
@@ -73,11 +73,13 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-3">
-                <div class="progress">
-                    <div class="progress-value">
-                        <img src="<?=base_url('images/icons/car_wash.png')?>" alt="car_wash NEAR ME" with="80px" height="80px">
+                <a href="javascript:void(0)" id="searchcarwash">
+                    <div class="progress">
+                        <div class="progress-value">
+                            <img src="<?=base_url('images/icons/car_wash.png')?>" alt="car_wash NEAR ME" with="80px" height="80px">
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-md-2 col-sm-3">
                 <a onclick="" href="javascript:void(0)">
@@ -92,7 +94,7 @@
                         <a onclick="" href="javascript:void(0)">
                         <div class="progress">
                             <div class="progress-value">
-                                <img src="<?=base_url('images/icons/services.png')?>" alt="services near me" with="80px" height="80px">
+                                <img src="<?=base_url('images/icons/gazpetrol.png')?>" alt="gaz petrol near me" with="80px" height="80px">
                             </div>
                         </div>
                         </a>
@@ -215,7 +217,7 @@
                             // draggable: true,
                             animation: google.maps.Animation.DROP,
                             shadow: true,
-                            icon: "<?='images/googlenearest.png'?>",
+                            icon: "<?=base_url('images/googlenearest.png')?>",
                             position: {
                                 lat: parseFloat(value.e_lat),
                                 lng: parseFloat(value.e_lng)
@@ -250,7 +252,7 @@
                             // draggable: true,
                             animation: google.maps.Animation.DROP,
                             shadow: true,
-                            icon: "<?='images/googlenearest.png'?>",
+                            icon: "<?=base_url('images/googlenearest.png')?>",
                             position: {
                                 lat: parseFloat(value.e_lat),
                                 lng: parseFloat(value.e_lng)
@@ -275,7 +277,7 @@
                markers[i].setMap(null);
             }
             $.ajax({
-                url: "<?=base_url('main/searchsalon')?>",
+                url: "<?=base_url('main/searchrest')?>",
                 dataType: "json",
                 success: function(data) {
                     $.each(data, function(key, value) {
@@ -294,9 +296,133 @@
                         });
                         markers.push(marker)
                         var infowindow = new google.maps.InfoWindow({
-                            content: '<div>Անվանում - <span>' + value.e_salon_name + '</span></div>' +
+                            content: '<div>Անվանում - <span>' + value.e_name + '</span></div>' +
                                 '<div>Հասցե - <span>' + value.e_address + '</span></div>' +
                                 '<div>Հեռ - <span>' + value.e_pnumber + '</span></div>' 
+                        });
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    })
+                }
+            })
+        });
+
+        $("#searchrenthome").click(function() {
+            for (i = 0; i < markers.length; i++) {
+               markers[i].setMap(null);
+            }
+            $.ajax({
+                url: "<?=base_url('main/searchhome')?>",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        var marker = new google.maps.Marker({
+                            clickable: true,
+                            // draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            shadow: true,
+                            icon: "<?='images/googlenearest.png'?>",
+                            position: {
+                                lat: parseFloat(value.e_lat),
+                                lng: parseFloat(value.e_lng)
+                            },
+                            map: map
+                        });
+                        markers.push(marker)
+                        if(value.e_rent_type == 'shenq'){
+                            var htype = 'Շենք'
+                        }else if(value.e_rent_type == 'sepakan'){
+                            var htype = 'Սեփական Բնակարան'
+                        }
+                        var infowindow = new google.maps.InfoWindow({
+                            content: '<div>Տեսակ - <span>' + htype + '</span></div>' +
+                                '<div>Գին - <span>' + value.e_rent_price + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_rent_addres + '</span></div>' +
+                                '<div>Հեռ - <span>' + value.e_rent_pnumber + '</span></div>' 
+                        });
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    })
+                }
+            })
+        });
+
+        $("#searchterminal").click(function() { 
+            for (i = 0; i < markers.length; i++) {
+               markers[i].setMap(null);
+            }
+            $.ajax({
+                url: "<?=base_url('main/searchterminal')?>",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        var marker = new google.maps.Marker({
+                            clickable: true,
+                            // draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            shadow: true,
+                            icon: "<?='images/googlenearest.png'?>",
+                            position: {
+                                lat: parseFloat(value.e_lat),
+                                lng: parseFloat(value.e_lng)
+                            },
+                            map: map
+                        });
+                        markers.push(marker)
+                        // if(value.e_rent_type == 'shenq'){
+                        //     var htype = 'Շենք'
+                        // }else if(value.e_rent_type == 'sepakan'){
+                        //     var htype = 'Սեփական Բնակարան'
+                        // }
+                        var infowindow = new google.maps.InfoWindow({
+                            content: '<div>Տեսակ - <span>' + value.e_type + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_address + '</span></div>'
+                        });
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    })
+                }
+            })
+        });
+
+        $("#searchcarwash").click(function() { 
+            for (i = 0; i < markers.length; i++) {
+               markers[i].setMap(null);
+            }
+            $.ajax({
+                url: "<?=base_url('main/searchcarwash')?>",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data, function(key, value) {
+                        console.log(value);
+                        var marker = new google.maps.Marker({
+                            clickable: true,
+                            // draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            shadow: true,
+                            icon: "<?='images/googlenearest.png'?>",
+                            position: {
+                                lat: parseFloat(value.e_lat),
+                                lng: parseFloat(value.e_lng)
+                            },
+                            map: map
+                        });
+                        markers.push(marker)
+                        if(value.e_24hour !== 'ON'){
+                            var e_24hour = value.e_time_1+' - '+value.e_time_2
+                        }else{
+                            var e_24hour = 'Շուրջօրյա'
+                        }
+                        var infowindow = new google.maps.InfoWindow({
+                            content:
+                                '<div>Անվանում - <span>' + value.e_name + '</span></div>' +
+                                '<div> Աշխ.Ժամ - <span>' + e_24hour + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_address + '</span></div>'
                         });
                         marker.addListener('click', function() {
                             infowindow.open(map, marker);

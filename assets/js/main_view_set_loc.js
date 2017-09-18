@@ -34,7 +34,7 @@ $(document).ready(function() {
                 map: map,
                 draggable: true,
                 animation: google.maps.Animation.DROP,
-                icon: 'http://localhost/newproject/images/googleyou.png',
+                icon: base_url+'/images/googleyou.png',
                 title: place.name,
                 position: place.geometry.location
             });
