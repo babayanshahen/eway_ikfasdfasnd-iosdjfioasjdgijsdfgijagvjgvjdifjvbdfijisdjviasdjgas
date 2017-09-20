@@ -16,7 +16,7 @@ color: #b4d250;
 ?>
 <?php if (isset($user_first_login) && $user_first_login):   ?>
 	<div class="alert alert-success">
-	  <strong>Բարի գալուստ ! </strong> Ներկայացրու քո ապրանքը կամ ձեռնարկությունը  ԱՆՎՃԱՐ
+	  <strong>Բարի գալուստ ! </strong> Ներկայացրու քո ձեռնարկությունը  ԱՆՎՃԱՐ
 	</div>
 <?php endif; ?>
 	<div  class='col-md-6'>

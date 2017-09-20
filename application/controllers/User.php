@@ -94,7 +94,10 @@ class User extends CI_Controller {
 					$this->load->model('Terminal_model');
 					$this->Terminal_model->insert( array(
 						'e_user_id' =>  $this->auth->getUser()->id,  
-						'e_type' =>  $this->input->post('e_type'),  
+						'e_type' =>  $this->input->post('e_type'),
+						'e_time_1' =>  $this->input->post('e_time_1'),  
+						'e_time_2' =>  $this->input->post('e_time_2'),
+						'e_24hour' =>  is_null($this->input->post('round_the_clock')) ? 'OFF' : $this->input->post('round_the_clock'), 
 						// 'e_rent_pnumber' =>  $this->input->post('e_pnumber'),  
 						// 'e_rent_price' =>  $this->input->post('e_rend_price'), 
 						'e_address' =>  $this->input->post('e_address'),  

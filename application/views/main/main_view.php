@@ -138,7 +138,6 @@
                 // dr_lat = event.latLng.lat()
                 // dr_lng = event.latLng.lng()
                 initialLocation = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
-                    // console.log(dr_lat);
 
                 // $( "#search_product" ).trigger( "click" )
                 // $.ajax({
@@ -149,7 +148,6 @@
                 //             'search_product': $("#inp_search_product").val()
                 //         },
                     }
-                    // console.log(dr_lat);
                     // marker.addListener('ready', toggleBounce);
                     marker.addListener('dragged', dragged);
                     google.maps.event.addListener(marker, 'dragend', dragged)
@@ -246,7 +244,6 @@
                 dataType: "json",
                 success: function(data) {
                     $.each(data, function(key, value) {
-                        console.log(value);
                         var marker = new google.maps.Marker({
                             clickable: true,
                             // draggable: true,
@@ -281,7 +278,6 @@
                 dataType: "json",
                 success: function(data) {
                     $.each(data, function(key, value) {
-                        console.log(value);
                         var marker = new google.maps.Marker({
                             clickable: true,
                             // draggable: true,
@@ -317,7 +313,6 @@
                 dataType: "json",
                 success: function(data) {
                     $.each(data, function(key, value) {
-                        console.log(value);
                         var marker = new google.maps.Marker({
                             clickable: true,
                             // draggable: true,
@@ -359,10 +354,8 @@
                 dataType: "json",
                 success: function(data) {
                     $.each(data, function(key, value) {
-                        console.log(value);
                         var marker = new google.maps.Marker({
                             clickable: true,
-                            // draggable: true,
                             animation: google.maps.Animation.DROP,
                             shadow: true,
                             icon: "<?='images/googlenearest.png'?>",
@@ -373,14 +366,16 @@
                             map: map
                         });
                         markers.push(marker)
-                        // if(value.e_rent_type == 'shenq'){
-                        //     var htype = 'Շենք'
-                        // }else if(value.e_rent_type == 'sepakan'){
-                        //     var htype = 'Սեփական Բնակարան'
-                        // }
+                        if(value.e_24hour == 'ON'){
+                            var ashx = 'Շուրջօրյա';
+                        }else{
+                            var ashx = value.e_time_1+'-ից '+value.e_time_1 ;
+                        }
                         var infowindow = new google.maps.InfoWindow({
-                            content: '<div>Տեսակ - <span>' + value.e_type + '</span></div>' +
-                                '<div>Հասցե - <span>' + value.e_address + '</span></div>'
+                            content: 
+                                '<div>Տեսակ - <span>' + value.e_type + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_address + '</span></div>'+
+                                '<div>Աշխ.Ժամ - <span>' + ashx + '</span></div>'
                         });
                         marker.addListener('click', function() {
                             infowindow.open(map, marker);
@@ -399,7 +394,6 @@
                 dataType: "json",
                 success: function(data) {
                     $.each(data, function(key, value) {
-                        console.log(value);
                         var marker = new google.maps.Marker({
                             clickable: true,
                             // draggable: true,

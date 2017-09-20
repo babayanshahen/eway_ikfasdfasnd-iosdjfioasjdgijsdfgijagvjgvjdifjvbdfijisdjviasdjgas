@@ -78,7 +78,7 @@ $( document ).on('change', '.dropdown', function(e) {
 			"</div>"+
 			
 			"<div class='checkbox'>"+
-			  "<label ><input type='checkbox' value='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+			  "<label ><input type='checkbox' name='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
 			"</div>"+
         	"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
@@ -118,6 +118,17 @@ $( document ).on('change', '.dropdown', function(e) {
 	        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
 						"<div class='input-group-addon'>Տեսակ</div>"+
 						"<input type='text' name='e_type' class='form-control' placeholder='E-PAY,TellCell ... '>"+
+					"</div>"+
+				"</div>"+
+
+				"<div class='checkbox'>"+
+			  		"<label ><input type='checkbox' name='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+				"</div>"+
+				"<div class='form-group'>"+
+	        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+						"<div class='input-group-addon'>Աշխ Ժամ</div>"+
+						"<input type='time' name='e_time_1' class='form-control time_input' >"+
+						"<input type='time' name='e_time_2' class='form-control time_input' >"+
 					"</div>"+
 				"</div>"
         	);
