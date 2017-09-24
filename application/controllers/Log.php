@@ -10,6 +10,15 @@ class Log extends CI_Controller {
 			); 
 		$this->load->template('log/login_view',$data);
 	}
+
+	public function reg(){
+		$data = array(
+				'logactive'=>false,
+				'regactive'=>true,
+			); 
+		$this->load->template('log/login_view',$data);
+	}
+
 	public function doLogin(){
 		// redirect('login', 'location');
 
@@ -23,10 +32,25 @@ class Log extends CI_Controller {
 				$this->auth->setLoginInfo($e_user);
 				redirect('user', 'location');
 				// out($e_user->user_password);
+			}else{
+				$data = array(
+					'loginerror' => true ,
+					'errorline'	=> ' Սխալ Մուտքանուն կամ Գաղտնաբառ',
+					'logactive'=>true,
+					'regactive'=>false
+				);
 			}
+		}else{
+			$data = array(
+					
+					'loginerror' => true ,
+					'errorline'	=> ' Սխալ Մուտքանուն կամ Գաղտնաբառ',
+					'logactive'=>true,
+					'regactive'=>false
+			);
 		}
-				redirect('log', 'location');
-		$this->load->template('log/login_view');
+				// redirect('log', 'location');
+		$this->load->template('log/login_view',$data);
 	}
 
 	public function logout(){
@@ -52,6 +76,13 @@ class Log extends CI_Controller {
 						);
 			if(isset($userpass) && isset($userconfpass) && !empty($userconfpass) && !empty($userpass)){
 				if($userpass === $userconfpass ){
+					$this->load->model('Register_users_model');
+					$count_user = $this->Register_users_model->isUserUniq(
+						array(
+							'user_login' => $user_login
+						)
+					);
+					if($count_user){
 					$data  = array(
 						'user_nick' => $user_nick,
 						'user_login' => $user_login,
@@ -63,6 +94,16 @@ class Log extends CI_Controller {
 					$this->register_users_model->insert($data);
 					$this->auth->setLoginInfo($data);
 					redirect('user', 'location');
+					}else{
+						$data = array(
+						'user_nick' => $user_nick,
+						'user_login' => $user_login,
+						'errorline'	=> 'Ընտրեք այլ Մուտքանուն',
+						'errorlogin' => true,
+						'logactive'=>false,
+						'regactive'=>true
+						);
+					}
 				}else{
 					$data = array(
 						'user_nick' => $user_nick,

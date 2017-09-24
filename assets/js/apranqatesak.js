@@ -185,6 +185,48 @@ $( document ).on('change', '.dropdown', function(e) {
         	);
 	}
 
+	if($('select[name=statement]').val() == '11'){
+		$(".appending_item").html(
+			"<div class='checkbox'>"+
+		  		"<label ><input type='radio' value='gaz' name='type_of_charge'  required> Գալալցակայան</label>"+
+			"</div>"+
+
+			"<div class='checkbox'>"+
+		  		"<label ><input type='radio' value='petrol' name='type_of_charge' > Բենզալցակայան</label>"+
+			"</div>"+
+
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Անվանում <i class='glyphicon-glyphicon-home'></i></div>"+
+					"<input type='text' name='e_name' class='form-control' placeholder='Petrol'>"+
+				"</div>"+
+			"</div>"
+        	);
+	}
+
+	if($('select[name=statement]').val() == '12'){
+		$(".appending_item").html(
+			"<div class='form-group'>"+
+        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+					"<div class='input-group-addon'>Անվանում. <i class='glyphicon-glyphicon-home'></i></div>"+
+					"<input type='text' name='e_name' class='form-control' placeholder='Natali Pharm'>"+
+				"</div>"+
+			"</div>"+
+			"<div class='checkbox'>"+
+			  		"<label ><input type='checkbox' name='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>"+
+				"</div>"+
+				"<div class='form-group'>"+
+	        		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
+						"<div class='input-group-addon'>Աշխ Ժամ</div>"+
+						"<input type='time' name='e_time_1' class='form-control time_input' >"+
+						"<input type='time' name='e_time_2' class='form-control time_input' >"+
+					"</div>"+
+				"</div>"
+        	);
+	}
+
+
+
 });
 
 function SetdisableORenable() {

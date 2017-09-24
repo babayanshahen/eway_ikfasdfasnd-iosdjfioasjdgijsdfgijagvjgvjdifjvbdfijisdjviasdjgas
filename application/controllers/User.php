@@ -148,6 +148,36 @@ class User extends CI_Controller {
 						));
 					redirect('user', 'location');
 					break;
+
+					// pharmacy
+					case '11':
+					$this->load->model('Charge_model');
+					$this->Charge_model->insert( array(
+						'e_user_id' =>  $this->auth->getUser()->id,  
+						'e_address' =>  $this->input->post('e_address'),
+						'e_type_of_charge' =>  $this->input->post('type_of_charge'),
+						'e_name' =>  $this->input->post('e_name'),
+						'e_lat' =>  $this->input->post('lat'),  
+						'e_lng' =>  $this->input->post('lng')
+						));
+					redirect('user', 'location');
+					break;
+
+					// pharmacy
+					case '12':
+					$this->load->model('Pharmacy_model');
+					$this->Pharmacy_model->insert( array(
+						'e_user_id' =>  $this->auth->getUser()->id,  
+						'e_address' =>  $this->input->post('e_address'),
+						'e_name' =>  $this->input->post('e_name'),
+						'e_24hour' =>  is_null($this->input->post('round_the_clock')) ? 'OFF' : $this->input->post('round_the_clock'), 
+						'e_time_1' =>  $this->input->post('e_time_1'),  
+						'e_time_2' =>  $this->input->post('e_time_2'),  
+						'e_lat' =>  $this->input->post('lat'),  
+						'e_lng' =>  $this->input->post('lng')
+						));
+					redirect('user', 'location');
+					break;
 				
 				
 				// default: 

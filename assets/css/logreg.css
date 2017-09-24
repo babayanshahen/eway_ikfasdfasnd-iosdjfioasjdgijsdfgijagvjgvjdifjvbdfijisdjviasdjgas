@@ -74,7 +74,10 @@ body{
 .social-login ul li:nth-child(3) a{
     background:#3698d9;
 }
-.sa-innate-form input[type=text], input[type=password], input[type=file], textarea, select, email{
+.margin-bottom-sm {
+    margin-bottom: 4px;
+}
+/*.sa-innate-form input[type=text], input[type=password], input[type=file], textarea, select, email{
     font-size:13px;
     padding:10px;
     border:1px solid#ccc;
@@ -82,7 +85,7 @@ body{
     width:100%;
     margin:8px 0;
     
-}
+}*/
 .sa-innate-form input[type=submit]{
     border:1px solid#e64b3b;
     background:#e64b3b;

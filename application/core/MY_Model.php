@@ -30,6 +30,19 @@ class MY_Model extends CI_Model
         // var_dump($res[0]);
     }
 
+    public function isUserUniq($where = array())
+    {
+        $this->db->where($where);
+        $res = $this->db->get($this->table)->result_object();
+        // out(empty($res),'var_dump');
+        // out(sizeof($res),'var_dump');
+        if(sizeof($res) == 0 && empty($res) ){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
     public function getRecords($where = array())
     {
         $this->db->where($where);

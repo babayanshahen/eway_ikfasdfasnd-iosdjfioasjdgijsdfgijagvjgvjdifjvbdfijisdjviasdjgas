@@ -5,7 +5,14 @@ class Main extends CI_Controller {
 
 	public function index(){
 		$this->load->template('main/main_view');
-		// $this->load->view('main/welcome_view');
+		
+	}
+	public function about(){
+		$this->load->view('main/welcome_view');
+	}
+
+	public function register(){
+		redirect('log', 'location');
 	}
 
 	public function searchproduct(){
@@ -41,42 +48,49 @@ class Main extends CI_Controller {
 	public function searchotel(){
 		$this->load->model('hotels_model');
 		$sresults = $this->hotels_model->getRecords();
-		// $sresults = $this->shop_model->getShopswithshopsname();
 		echo json_encode($sresults);
 	}
 
 	public function searchsalon(){
 		$this->load->model('beauty_salon_model');
 		$sresults = $this->beauty_salon_model->getRecords();
-		// $sresults = $this->shop_model->getShopswithshopsname();
 		echo json_encode($sresults);
 	}
 
 	public function searchrest(){
 		$this->load->model('Restaurant_model');
 		$sresults = $this->Restaurant_model->getRecords();
-		// $sresults = $this->shop_model->getShopswithshopsname();
 		echo json_encode($sresults);
 	}
 
 	public function searchhome(){
 		$this->load->model('Rent_home_model');
 		$sresults = $this->Rent_home_model->getRecords();
-		// $sresults = $this->shop_model->getShopswithshopsname();
 		echo json_encode($sresults);
 	}
 
 	public function searchterminal(){
 		$this->load->model('Terminal_model');
 		$sresults = $this->Terminal_model->getRecords();
-		// $sresults = $this->shop_model->getShopswithshopsname();
 		echo json_encode($sresults);
 	}
 
 	public function searchcarwash(){
 		$this->load->model('Car_wash_model');
 		$sresults = $this->Car_wash_model->getRecords();
-		// $sresults = $this->shop_model->getShopswithshopsname();
 		echo json_encode($sresults);
 	}
+
+	public function searchpharmacy(){
+		$this->load->model('Pharmacy_model');
+		$sresults = $this->Pharmacy_model->getRecords();
+		echo json_encode($sresults);
+	}
+
+	public function searchcharge(){
+		$this->load->model('Charge_model');
+		$sresults = $this->Charge_model->getRecords();
+		echo json_encode($sresults);
+	}
+
 }

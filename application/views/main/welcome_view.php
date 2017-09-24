@@ -15,28 +15,27 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
-	<body ng-app>
-		<div class="container">
+	<body >
 			<div  class='col-md-12'>
 				<div class="form-group" >
-					<div class="alert alert-success text-center">
-						<h2>ՇՈՒՏՈՎ</h2>
-						<h3>EWAY</h3>
-					</div>
-					<div class="alert alert-info text-center">
+					<a href="<?=base_url()?>" class="btn btn-success btn-block">
+						<h2 class='text-center '>ՎԵՐԱԴԱՌՆԱԼ ԿԱՅՔ</h2>
+					</a>
+					<div class="alert  text-center">
 						<h2> ՏԵՂԵԿԱՑՐՈՒ ՔՈ  ՄԱՍԻՆ</h2>
-					<img  src="<?=base_url('images/menq.png')?>" alt="Eway_armenia" with="300px" height="319"   >
+					<img  src="<?=base_url('images/menq.png')?>" alt="Eway_armenia" with="200px" height="219"   >
 						<h2 class="text-center">__________</h2>
-						<h2> ԳՏԻՐ ՄՈՏԱԿԱՅՔՈՒՄ</h2>
-						<h2 class='text-center'>• Մթերային խանութ</h2>
-						<h2 class="text-center">• Հագուստի Սրահ </h2>
-						<h2 class="text-center">• Ավտոտեխսպասարկման կենտրոններ </h2>
-						<h2 class="text-center">• Վարձակալությամբ տրվող բնակարաններ </h2>	
-						<h2 class="text-center">• Telcell, EpaY ապարատներ </h2>
+						<h2 class="text-success"> ԳՏԻՐ ՔԵԶ ԱՄԵՆԱՄՈՏ</h2>
+						<h2 class='text-center text-danger'>• Մթերային խանութներ</h2>
+						<h2 class="text-center text-danger">• Հագուստի Սրահներ </h2>
+						<h2 class="text-center text-danger">• Դեղատներ </h2>
+						<h2 class="text-center text-danger">• Գեղեցկության սրահներ </h2>
+						<h2 class="text-center text-danger">• Գազալցակայաններ,բենզալցակայաններ </h2>
+						<h2 class="text-center text-danger">• Վարձակալությամբ տրվող բնակարաններ </h2>	
+						<h2 class="text-center text-danger">• Telcell, EpaY ապարատներ </h2>
 					</div>
 				</div>
 			</div>
-		</div>
 		<!-- <footer>
 			<div class="row">
 				<div class="col-lg-12"> Copyright  Babayan </div>

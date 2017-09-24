@@ -29,7 +29,9 @@ color: #b4d250;
 				<select  id="sel_st_type"  class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" name="statement">
 					<option value="0">Ընտրել տեսակը</option>
 					<?php foreach ($statement as $statement): ?>
+						<?php if($statement->e_show == 'YES'): ?>
 					<option value="<?=$statement->e_stm_value?>"> <?= $statement->e_stm_name ?></option>
+						<?php endif; ?>
 					<?php endforeach; ?>
 				</select>
 			</div>
