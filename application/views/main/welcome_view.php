@@ -30,7 +30,8 @@
 						<h2 class="text-center text-danger">• Հագուստի Սրահներ </h2>
 						<h2 class="text-center text-danger">• Դեղատներ </h2>
 						<h2 class="text-center text-danger">• Գեղեցկության սրահներ </h2>
-						<h2 class="text-center text-danger">• Գազալցակայաններ,բենզալցակայաններ </h2>
+						<h2 class="text-center text-danger">• Գազալցակայաններ </h2>
+						<h2 class="text-center text-danger">• Բենզալցակայաններ </h2>
 						<h2 class="text-center text-danger">• Վարձակալությամբ տրվող բնակարաններ </h2>	
 						<h2 class="text-center text-danger">• Telcell, EpaY ապարատներ </h2>
 					</div>

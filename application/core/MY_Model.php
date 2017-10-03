@@ -12,6 +12,7 @@ class MY_Model extends CI_Model
     }
     
     
+    
     public function getUser($where = array())
     {
         $this->db->where($where);
@@ -61,20 +62,20 @@ class MY_Model extends CI_Model
         // var_dump($res[0]);
     }
     
-    // public function getRecord($id)
-    // {
-    //     return $this->db->where($this->pk, $id)->get($this->table)->row();
-    // }
+    public function getRecord($id)
+    {
+        return $this->db->where($this->pk, $id)->get($this->table)->row();
+    }
     
-    // public function deleteRow($where)
-    // {
-    //     if(is_numeric($where))
-    //         $this->db->where($this->pk, $where);
-    //     else
-    //         $this->db->where($where);
-    //     if($this->db->delete($this->table))
-    //         return TRUE;
-    // }
+    public function deleteRow($where)
+    {
+        if(is_numeric($where))
+            $this->db->where($this->pk, $where);
+        else
+            $this->db->where($where);
+        if($this->db->delete($this->table))
+            return TRUE;
+    }
     
     // public function countRows($vars = array())
     // {
@@ -98,13 +99,13 @@ class MY_Model extends CI_Model
         $this->db->where($this->pk, $id)->update($this->table, $vars);
     }
 
-    // public function UpdateByField($where, $vars) 
-    // {
-    //     if(!empty($where))
-    //     {
-    //         return $this->db->where($where)->update($this->table, $vars);
-    //     }       
-    // }
+    public function UpdateByField($where, $vars) 
+    {
+        if(!empty($where))
+        {
+            return $this->db->where($where)->update($this->table, $vars);
+        }       
+    }
 
     // public function getRecordByField($where)
     // {

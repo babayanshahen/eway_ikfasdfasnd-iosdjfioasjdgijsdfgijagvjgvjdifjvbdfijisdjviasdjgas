@@ -6,7 +6,6 @@ $( document ).on('change', '.dropdown', function(e) {
 
 	}
 	if ($('select[name=statement]').val() == '2'){
-		            		console.log(base_url+'user/getTypes/shops');
 		        $.ajax({
 		            url:  base_url+'user/getTypes/shops',
 		            success: function(data) {
@@ -188,17 +187,17 @@ $( document ).on('change', '.dropdown', function(e) {
 	if($('select[name=statement]').val() == '11'){
 		$(".appending_item").html(
 			"<div class='checkbox'>"+
-		  		"<label ><input type='radio' value='gaz' name='type_of_charge'  required> Գալալցակայան</label>"+
+		  		"<label ><input type='radio' value='gaz' name='type_of_charge'  required> Գազալցակայան</label>"+
 			"</div>"+
 
 			"<div class='checkbox'>"+
-		  		"<label ><input type='radio' value='petrol' name='type_of_charge' > Բենզալցակայան</label>"+
+		  		"<label ><input type='radio' value='petrol' name='type_of_charge' required > Բենզալցակայան</label>"+
 			"</div>"+
 
 			"<div class='form-group'>"+
         		"<div class='input-group mb-2 mr-sm-2 mb-sm-0'>"+
-					"<div class='input-group-addon'>Անվանում <i class='glyphicon-glyphicon-home'></i></div>"+
-					"<input type='text' name='e_name' class='form-control' placeholder='Petrol'>"+
+					"<div class='input-group-addon'>Նկարագրություն <i class='glyphicon-glyphicon-home'></i></div>"+
+					"<input type='text' name='e_name' class='form-control' placeholder='Petrol' required>"+
 				"</div>"+
 			"</div>"
         	);

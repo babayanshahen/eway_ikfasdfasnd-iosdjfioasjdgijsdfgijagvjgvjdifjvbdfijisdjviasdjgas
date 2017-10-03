@@ -10,7 +10,6 @@ if (!function_exists('out')) {
             print_r($var);
         }
         echo '</pre>';
-        die();
     }
 }
 

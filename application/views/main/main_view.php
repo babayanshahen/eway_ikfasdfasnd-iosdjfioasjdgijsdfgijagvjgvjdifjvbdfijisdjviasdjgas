@@ -381,7 +381,7 @@
                         var infowindow = new google.maps.InfoWindow({
                             content: '<div>Տեսակ - <span>' + htype + '</span></div>' +
                                 '<div>Գին - <span>' + value.e_rent_price + '</span></div>' +
-                                '<div>Հասցե - <span>' + value.e_rent_addres + '</span></div>' +
+                                '<div>Հասցե - <span>' + value.e_address + '</span></div>' +
                                 '<div>Հեռ - <span>' + value.e_rent_pnumber + '</span></div>' 
                         });
                         marker.addListener('click', function() {
@@ -569,7 +569,7 @@
                         }
                         var infowindow = new google.maps.InfoWindow({
                             content:
-                                '<div>Անվանում - <span>' + value.e_name + '</span></div>' +
+                                '<div>Նկարագրություն - <span>' + value.e_name + '</span></div>' +
                                 '<div> Տեսակ- <span>' + charge_type + '</span></div>' +
                                 '<div>Հասցե - <span>' + value.e_address + '</span></div>'
                         });

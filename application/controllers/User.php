@@ -3,13 +3,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
 
-	public function index(){
+	public function index($scroll=false){
 		// $this->load->library('auth_library');
 		// out($this->auth->getUser());
 		// out(isLoggedIn());
 		if($this->auth->isLoggedIn()){
+			// if($uptdate && isset($model) && isset($itemid) ){
+			// 	$this->load->model($model);
+			// 	$update_items = $this->$model->getRecord($itemid);
+			// 	$update_items->statment = $model;
+			// 	out($update_items);
+			// 	$data = array(
+			// 		'update_items' => isset($update_items) && !is_null($update_items) ? $update_items :false	
+			// 	);
+			// 	$this->load->template('user/update_view',$data);
+			// 	// $this->$model->UpdateByField(array);
+			// 	// die('asdasd');
+			// }else{
+			// 	redirect('user', 'location');
+			// }
 			$this->load->model("Statment_type_model");
-			$data = array('statement'=>$this->Statment_type_model->getRecords());
+			$this->load->helper('database_search');
+			$useritems = grep_db('eway',array('e_user_id' => $this->auth->getUser()->id ));
+			// out($useritems);
+			// $useritems = $this->Statment_type_model->grep_db('eway',array(
+			// 	'e_user_id' => 95 )
+			// );
+			// foreach($useritems as $useritem){
+			// 	if(isset($useritem->tablename)){
+			// 		loadModel($useritem->tablename);
+			// 		// $this->load->model("$useritem->tablename");
+			// 	}
+			// }
+			$data = array(
+				'statement'=>$this->Statment_type_model->getRecords(),
+				'user_items'=> $useritems,
+				'scroll' => $scroll ? $scroll : false
+			);
 			// out($data);
 			// foreach($data as $data){
 			// 		echo $data->e_stm_name;
@@ -82,7 +112,7 @@ class User extends CI_Controller {
 						'e_rent_type' =>  $this->input->post('rent_type'),  
 						'e_rent_pnumber' =>  $this->input->post('e_pnumber'),  
 						'e_rent_price' =>  $this->input->post('e_rend_price'), 
-						'e_rent_addres' =>  $this->input->post('e_address'),  
+						'e_address' =>  $this->input->post('e_address'),  
 						'e_lat' =>  $this->input->post('lat'),  
 						'e_lng' =>  $this->input->post('lng')
 						));
@@ -198,6 +228,68 @@ class User extends CI_Controller {
 			$data =  $this->shops_model->getRecords();
 			echo json_encode($data);
 		}
+	}
+
+	public function deleteitem($model,$id,$scroll=1){
+		$this->load->model($model);
+		$this->$model->deleteRow($id);
+		redirect('user/index/'.$scroll,'location');
+	}
+
+	public function updateProduct(){
+		// out($_POST);die();
+		$model_name = $this->input->post('current_statment');
+		$id = $this->input->post('item_id');
+		switch ($model_name) {
+			case 'beauty_salon_model':
+				$data = array(
+					'e_user_id'=>95,
+					'e_salon_name' => $this->input->post('e_salon_name'),
+					'e_address' => $this->input->post('e_address'),
+					'e_pnumber' => $this->input->post('e_pnumber'),
+					'e_lat' => $this->input->post('e_lat'),
+					'e_lng' => $this->input->post('e_lng')
+				);
+			break;
+			
+			default:
+				# code...
+				break;
+		}
+		$this->load->model($model_name);
+		// $this->$model_name->update($id,$data);
+		$this->$model_name->insert($data);
+		$this->load->library('user_agent');
+			redirect($this->agent->referrer(),'location');
+	}
+
+	public function changeitem($model,$itemId){
+		if($this->auth->isLoggedIn()){
+				$this->load->model($model);
+				$this->load->model("Statment_type_model");
+				$update_items = $this->$model->getRecord($itemId);
+				if(!is_null($update_items)){
+					$update_items->statment = $model;
+					// out($update_items);
+					$data = array(
+						'statement'=>$this->Statment_type_model->getRecords(),
+						'update_items' => isset($update_items) && !is_null($update_items) ? $update_items :false	
+					);
+					$this->load->template('user/update_view',$data);
+				}else{
+					redirect('user', 'location');
+				}
+				// $this->$model->UpdateByField(array);
+				// die('asdasd');
+				// $this->load->template('user/user_view',$data);
+		}else{
+			redirect('main', 'location');
+
+		}
+		// $this->index(true,$model,$itemId);
+		// $this->load->model($model);
+		// $this->$model->UpdateByField(array);
+
 	}
 	
 }
