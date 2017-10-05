@@ -241,10 +241,30 @@ class User extends CI_Controller {
 		$model_name = $this->input->post('current_statment');
 		$id = $this->input->post('item_id');
 		switch ($model_name) {
-			case 'beauty_salon_model':
+			case 'Beauty_salon_model':
 				$data = array(
-					'e_user_id'=>95,
+					'e_user_id'=>$this->auth->getUser()->id,
 					'e_salon_name' => $this->input->post('e_salon_name'),
+					'e_address' => $this->input->post('e_address'),
+					'e_pnumber' => $this->input->post('e_pnumber'),
+					'e_lat' => $this->input->post('e_lat'),
+					'e_lng' => $this->input->post('e_lng')
+				);
+			break;
+			case 'Hotels_model':
+				$data = array(
+					'e_user_id'=>$this->auth->getUser()->id,
+					'e_hotel_name' => $this->input->post('e_hotel_name'),
+					'e_address' => $this->input->post('e_address'),
+					'e_pnumber' => $this->input->post('e_pnumber'),
+					'e_lat' => $this->input->post('e_lat'),
+					'e_lng' => $this->input->post('e_lng')
+				);
+			break;
+			case 'Restaurant_model':
+				$data = array(
+					'e_user_id'=>$this->auth->getUser()->id,
+					'e_name' => $this->input->post('e_name'),
 					'e_address' => $this->input->post('e_address'),
 					'e_pnumber' => $this->input->post('e_pnumber'),
 					'e_lat' => $this->input->post('e_lat'),
@@ -256,17 +276,18 @@ class User extends CI_Controller {
 				# code...
 				break;
 		}
+		// out($model_name);die();
 		$this->load->model($model_name);
-		// $this->$model_name->update($id,$data);
-		$this->$model_name->insert($data);
+		$this->$model_name->update($id,$data);
+		// $this->$model_name->insert($data);
 		$this->load->library('user_agent');
 			redirect($this->agent->referrer(),'location');
 	}
 
 	public function changeitem($model,$itemId){
 		if($this->auth->isLoggedIn()){
-				$this->load->model($model);
 				$this->load->model("Statment_type_model");
+				$this->load->model($model);
 				$update_items = $this->$model->getRecord($itemId);
 				if(!is_null($update_items)){
 					$update_items->statment = $model;

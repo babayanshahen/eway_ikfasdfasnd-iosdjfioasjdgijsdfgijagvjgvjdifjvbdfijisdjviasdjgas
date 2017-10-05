@@ -11,7 +11,13 @@
 						<select  id="sel_st_type"  class="btn btn-success dropdown-toggle btn-block" type="button" data-toggle="dropdown" name="statement">
 							<?php foreach ($statement as $statement): ?>
 							<?php if($statement->e_show == 'YES'): ?>
-							<option value="<?=$statement->e_stm_value?>" <?=$update_items->statment == $statement->e_table_name.'_model' ? 'selected=selected':''?>	> <?= $statement->e_stm_name ?></option>
+								<?php 
+									// echo $update_items->statment ;
+									// echo $statement->e_table_name.'_model' ;
+									// out($statement);
+									// out($update_items->statment);
+								 ?>
+							<option value="<?=$statement->e_stm_value?>" <?=ucfirst($update_items->statment) == ucfirst ($statement->e_table_name.'_model') ? 'selected=selected':''?>	> <?= $statement->e_stm_name ?></option>
 							<?php endif; ?>
 							<?php endforeach; ?>
 						</select>
@@ -51,16 +57,35 @@
 			?>
 </div>
 <script>
-var e_salon_name = "<?=$update_items->e_salon_name ?>"
-var e_pnumber = "<?=$update_items->e_pnumber ?>"
-var e_address = "<?=$update_items->e_address ?>"
-// var e_lat = "<?=$update_items->e_lat ?>"
-// var e_lng = "<?=$update_items->e_lng ?>"
-$('#sel_st_type').val($( "select option:selected" ).val()).trigger('change');
-$( "input[name='e_salon_name']").val(e_salon_name);
-$( "input[name='e_pnumber']").val(e_pnumber);
-$( "input[name='e_address']").val(e_address);
-// $( "input[name='lat']").val(e_lat);
-// $( "input[name='lng']").val(e_lng);
-$('#sel_st_type').prop('disabled', 'disabled');
+	$('#sel_st_type').val($( "select option:selected" ).val()).trigger('change');
+	$('#sel_st_type').prop('disabled', 'disabled');
+	var statment = "<?=ucfirst($update_items->statment)?>";
+	switch (statment) {
+	    case "Beauty_salon_model":
+	        var e_salon_name = "<?=isset($update_items->e_salon_name) ? $update_items->e_salon_name : '' ?>"
+	        var e_pnumber = "<?=isset($update_items->e_pnumber) ? $update_items->e_pnumber :'' ?>"
+	        var e_address = "<?=$update_items->e_address ?>"
+	        $("input[name='e_salon_name']").val(e_salon_name);
+	        $("input[name='e_pnumber']").val(e_pnumber);
+	        $("input[name='e_address']").val(e_address);
+	        break;
+	    case "Hotels_model":
+	   		var e_hotel_name = "<?=isset($update_items->e_hotel_name) ? $update_items->e_hotel_name : '' ?>"
+	        var e_pnumber = "<?=isset($update_items->e_pnumber) ? $update_items->e_pnumber :'' ?>"
+	        var e_address = "<?=$update_items->e_address ?>"
+	        $("input[name='e_hotel_name']").val(e_hotel_name);
+	        $("input[name='e_pnumber']").val(e_pnumber);
+	        $("input[name='e_address']").val(e_address);
+	        break;
+	    case "Restaurant_model":
+	   		var e_name = "<?=isset($update_items->e_name) ? $update_items->e_name : '' ?>"
+	        var e_pnumber = "<?=isset($update_items->e_pnumber) ? $update_items->e_pnumber :'' ?>"
+	        var e_address = "<?=$update_items->e_address ?>"
+	        $("input[name='e_name']").val(e_name);
+	        $("input[name='e_pnumber']").val(e_pnumber);
+	        $("input[name='e_address']").val(e_address);
+	        break;
+	    // default:
+	    //     code block
+	}
 </script>

@@ -39,20 +39,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
             <?php if(!$this->auth->isLoggedIn()): ?>
-                   <!--  <li>
-                        <a href="<?=base_url('register')?>">Գրանցվել</a>
-                    </li> -->
+                    <li>
+                        <a href="<?=base_url('log/reg')?>">Գրանցվել</a>
+                    </li>
             <?php endif; ?>
                     <li>
-                    <?php 
-                    // out($this->auth->isLoggedIn() ? 'Մուտք' : 'Ելք' );
-
-                     ?>
                         <a href="<?=base_url($this->auth->isLoggedIn() ? 'log/logout' : 'log' )?>"><?= $this->auth->isLoggedIn() ? 'Ելք' : 'Մուտք' ?></a>
                     </li>
+            <?php if(($this->auth->isLoggedIn() && $this->uri->segment(1) == '')): ?>
                     <li>
-                        <!-- <a href="#">Կապ</a> -->
+                        <a href="<?=base_url('user')?>">Իմ էջ</a>
                     </li>
+            <?php endif; ?>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

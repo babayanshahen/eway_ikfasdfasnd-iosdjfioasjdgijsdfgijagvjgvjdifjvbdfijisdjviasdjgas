@@ -49,7 +49,44 @@ if (!function_exists('loadItemsSettings')) {
                     $ci->load->model('Shop_model');
                     break;
                 case 'e_restaurants':
-                    $ci->load->model('Restaurant_model');
+                    $table_model = 'Restaurant_model';
+                    echo "<div class='col-xs-6 col-sm-3'>
+                        <div class='panel panel-default'>
+                            <div class='panel-heading'>".loadTableName('e_restaurants')."</div>
+                                <div class='panel-body'>
+                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 form-group'>
+                                    <div class='input-group-addon'>
+                                        <span class='glyphicon glyphicon-align-left'></span>
+                                    </div>
+                                <input type='text' name='e_address' class='form-control ' value= '$item->e_name'  disabled>
+                                </div>
+
+                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 form-group'>
+                                    <div class='input-group-addon'>
+                                        <i class='glyphicon glyphicon-phone-alt'></i>
+                                    </div>
+                                <input type='text' name='e_address' class='form-control ' value= '$item->e_pnumber'  disabled>
+                                </div>
+
+                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 form-group'>
+                                    <div class='input-group-addon'>
+                                        <span class='glyphicon glyphicon-map-marker'></span>
+                                    </div>
+                                    <input type='text' name='e_address' class='form-control ' value= '$item->e_address'  disabled>
+                                </div>
+                                    <button type='button' class='btn btn-danger btn-block' onclick='  deleteConfRest($item->id)'>
+                                         Հեռացնել 
+                                    </button>
+                                    <button type='button' class='btn btn-success btn-block' onclick='changeItemRest($item->id)'>
+                                        Փոփոխել 
+                                    </button>
+                            </div>
+                        </div>
+                    </div>";
+                    loadJS(array(
+                        'deleteItems' => 'deleteItems'
+                        ),base_url()
+                    );
                     break;
                 case 'e_rent_home':
                     $ci->load->model('Rent_home_model');
@@ -58,34 +95,71 @@ if (!function_exists('loadItemsSettings')) {
                     $ci->load->model('Pharmacy_model');
                     break;
                 case 'e_hotels':
-                    $ci->load->model('Hotels_model');
-                    break;
-                case 'e_charges':
-                echo "<div class='col-xs-6 col-sm-3'>
+                    $table_model = 'Hotels_model';
+                    echo "<div class='col-xs-6 col-sm-3'>
                         <div class='panel panel-default'>
-                            <div class='panel-heading'>".loadTableName('e_charges')."</div>
-                                <div class='panel-body' ><div class='form-group'>
-                                    <label for='exampleInputUsername'>նկարագրություն</label>
-                                    <input type='text' class='form-control' id=' placeholder=' Enter Name' value='$item->e_name'>
+                            <div class='panel-heading'>".loadTableName('e_hotels')."</div>
+                                <div class='panel-body'>
+                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 form-group'>
+                                    <div class='input-group-addon'>
+                                        <span class='glyphicon glyphicon-align-left'></span>
+                                    </div>
+                                <input type='text' name='e_address' class='form-control ' value= '$item->e_hotel_name'  disabled>
                                 </div>
-                                <label for='exampleInputUsername'>Տեսակ</label>
-                                <div class='checkbox'>
-                                    <label><input type='radio' value='gaz' name='' required=''> Գազալցակայան</label>
+
+                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 form-group'>
+                                    <div class='input-group-addon'>
+                                        <i class='glyphicon glyphicon-phone-alt'></i>
+                                    </div>
+                                <input type='text' name='e_address' class='form-control ' value= '$item->e_pnumber'  disabled>
                                 </div>
-                                <div class='checkbox'>
-                                    <label><input type='radio' value='gaz' name='' required=''> Բենզալցակայան</label>
-                                </div>
-                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 addres_for_add'>
+
+                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 form-group'>
                                     <div class='input-group-addon'>
                                         <span class='glyphicon glyphicon-map-marker'></span>
                                     </div>
-                                    <input type='text' name='e_address' class='form-control ' value= '$item->e_address' required=' autocomplete='off' disabled>
-                                    <input type='hidden' name='lat' class='lat' autocomplete='off'>
-                                    <input type='hidden' name='lng' class='lng' autocomplete='off'>
+                                    <input type='text' name='e_address' class='form-control ' value= '$item->e_address'  disabled>
                                 </div>
+                                    <button type='button' class='btn btn-danger btn-block' onclick='  deleteConfHotel($item->id)'>
+                                         Հեռացնել 
+                                    </button>
+                                    <button type='button' class='btn btn-success btn-block' onclick='changeItemHotel($item->id)'>
+                                        Փոփոխել 
+                                    </button>
                             </div>
                         </div>
                     </div>";
+                    loadJS(array(
+                        'deleteItems' => 'deleteItems'
+                        ),base_url()
+                    );
+                    break;
+                case 'e_charges':
+                // echo "<div class='col-xs-6 col-sm-3'>
+                //         <div class='panel panel-default'>
+                //             <div class='panel-heading'>".loadTableName('e_charges')."</div>
+                //                 <div class='panel-body' ><div class='form-group'>
+                //                     <label for='exampleInputUsername'>նկարագրություն</label>
+                //                     <input type='text' class='form-control' id=' placeholder=' Enter Name' value='$item->e_name'>
+                //                 </div>
+                //                 <label for='exampleInputUsername'>Տեսակ</label>
+                //                 <div class='checkbox'>
+                //                     <label><input type='radio' value='gaz' name='' required=''> Գազալցակայան</label>
+                //                 </div>
+                //                 <div class='checkbox'>
+                //                     <label><input type='radio' value='gaz' name='' required=''> Բենզալցակայան</label>
+                //                 </div>
+                //                 <div class='input-group mb-2 mr-sm-2 mb-sm-0 addres_for_add'>
+                //                     <div class='input-group-addon'>
+                //                         <span class='glyphicon glyphicon-map-marker'></span>
+                //                     </div>
+                //                     <input type='text' name='e_address' class='form-control ' value= '$item->e_address' required=' autocomplete='off' disabled>
+                //                     <input type='hidden' name='lat' class='lat' autocomplete='off'>
+                //                     <input type='hidden' name='lng' class='lng' autocomplete='off'>
+                //                 </div>
+                //             </div>
+                //         </div>
+                //     </div>";
                     break;
                 // case 'e_users':
                 //     $ci->load->model('Register_users_model');
@@ -116,10 +190,10 @@ if (!function_exists('loadItemsSettings')) {
                                     </div>
                                     <input type='text' name='e_address' class='form-control ' value= '$item->e_address'  disabled>
                                 </div>
-                                    <button type='button' class='btn btn-danger btn-block' onclick='  deleteConf($item->id)'>
+                                    <button type='button' class='btn btn-danger btn-block' onclick='  deleteConfBeauty($item->id)'>
                                          Հեռացնել 
                                     </button>
-                                    <button type='button' class='btn btn-success btn-block' onclick='changeItem($item->id)'>
+                                    <button type='button' class='btn btn-success btn-block' onclick='changeItemBeauty($item->id)'>
                                         Փոփոխել 
                                     </button>
                             </div>
@@ -138,37 +212,37 @@ if (!function_exists('loadItemsSettings')) {
                 // $results = $ci->Car_wash_model->getrecords(array('e_user_id'=>$ci->auth->getUser()->id));
                 // out($results);
                 // foreach ($results as $result) {
-                    echo 
-                    "<div class='col-xs-6 col-sm-3'>
-                        <div class='panel panel-default'>
-                            <div class='panel-heading'>".loadTableName('e_car_washes')."</div>
-                                <div class='panel-body' ><div class='form-group'>
-                                    <label for='exampleInputUsername'>Անվանում</label>
-                                    <input type='text' class='form-control' id=' placeholder=' Enter Name' value='$item->e_name'>
-                                </div>
-                                <div class='checkbox'>
-                                    <label ><input type='checkbox' name='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>
-                                </div>
-                                <div class='form-group'>
-                                    <label for='telephone'>Աշխ.ժամի սկիզբ</label>
-                                    <input  class='form-control' value='$item->e_time_1'>
-                                </div>
-                                <div class='form-group'>
-                                    <label for='telephone'>Աշխ.ժամի ավարտ</label>
-                                    <input  class='form-control'  value='$item->e_time_2'>
-                                </div>
-                                <div class='input-group mb-2 mr-sm-2 mb-sm-0 addres_for_add'>
-                                    <div class='input-group-addon'>
-                                        <span class='glyphicon glyphicon-map-marker'></span>
-                                    </div>
-                                    <input type='text' name='e_address' class='form-control ' value= '$item->e_address' required=' autocomplete='off' disabled>
-                                    <input type='hidden' name='lat' class='lat' autocomplete='off'>
-                                    <input type='hidden' name='lng' class='lng' autocomplete='off'>
-                                </div>
-                            </div>
-                        </div>
-                    </div>";
-                // }
+                //     echo 
+                //     "<div class='col-xs-6 col-sm-3'>
+                //         <div class='panel panel-default'>
+                //             <div class='panel-heading'>".loadTableName('e_car_washes')."</div>
+                //                 <div class='panel-body' ><div class='form-group'>
+                //                     <label for='exampleInputUsername'>Անվանում</label>
+                //                     <input type='text' class='form-control' id=' placeholder=' Enter Name' value='$item->e_name'>
+                //                 </div>
+                //                 <div class='checkbox'>
+                //                     <label ><input type='checkbox' name='round_the_clock' onclick='SetdisableORenable()'>24 ժամ</label>
+                //                 </div>
+                //                 <div class='form-group'>
+                //                     <label for='telephone'>Աշխ.ժամի սկիզբ</label>
+                //                     <input  class='form-control' value='$item->e_time_1'>
+                //                 </div>
+                //                 <div class='form-group'>
+                //                     <label for='telephone'>Աշխ.ժամի ավարտ</label>
+                //                     <input  class='form-control'  value='$item->e_time_2'>
+                //                 </div>
+                //                 <div class='input-group mb-2 mr-sm-2 mb-sm-0 addres_for_add'>
+                //                     <div class='input-group-addon'>
+                //                         <span class='glyphicon glyphicon-map-marker'></span>
+                //                     </div>
+                //                     <input type='text' name='e_address' class='form-control ' value= '$item->e_address' required=' autocomplete='off' disabled>
+                //                     <input type='hidden' name='lat' class='lat' autocomplete='off'>
+                //                     <input type='hidden' name='lng' class='lng' autocomplete='off'>
+                //                 </div>
+                //             </div>
+                //         </div>
+                //     </div>";
+                // // }
                 break;
 
                 default:
@@ -203,7 +277,7 @@ if (!function_exists('loadTableName')) {
                     return "Դեղատուն";
                     break;
                 case 'e_hotels':
-                    return "Հյուրանոցներ";
+                    return "Հյուրանոց";
                     break;
                 case 'e_charges':
                     return "Գազալցակայան,Բենզալցակայան";
