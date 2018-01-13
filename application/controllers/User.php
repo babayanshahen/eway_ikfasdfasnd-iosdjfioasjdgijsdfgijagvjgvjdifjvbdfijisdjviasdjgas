@@ -4,46 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 
 	public function index($scroll=false){
-		// $this->load->library('auth_library');
-		// out($this->auth->getUser());
-		// out(isLoggedIn());
 		if($this->auth->isLoggedIn()){
-			// if($uptdate && isset($model) && isset($itemid) ){
-			// 	$this->load->model($model);
-			// 	$update_items = $this->$model->getRecord($itemid);
-			// 	$update_items->statment = $model;
-			// 	out($update_items);
-			// 	$data = array(
-			// 		'update_items' => isset($update_items) && !is_null($update_items) ? $update_items :false	
-			// 	);
-			// 	$this->load->template('user/update_view',$data);
-			// 	// $this->$model->UpdateByField(array);
-			// 	// die('asdasd');
-			// }else{
-			// 	redirect('user', 'location');
-			// }
 			$this->load->model("Statment_type_model");
 			$this->load->helper('database_search');
-			$useritems = grep_db('eway',array('e_user_id' => $this->auth->getUser()->id ));
-			// out($useritems);
-			// $useritems = $this->Statment_type_model->grep_db('eway',array(
-			// 	'e_user_id' => 95 )
-			// );
-			// foreach($useritems as $useritem){
-			// 	if(isset($useritem->tablename)){
-			// 		loadModel($useritem->tablename);
-			// 		// $this->load->model("$useritem->tablename");
-			// 	}
-			// }
+			$useritems = grep_db($this->db->database,array('e_user_id' => $this->auth->getUser()->id ));
 			$data = array(
 				'statement'=>$this->Statment_type_model->getRecords(),
 				'user_items'=> $useritems,
 				'scroll' => $scroll ? $scroll : false
 			);
-			// out($data);
-			// foreach($data as $data){
-			// 		echo $data->e_stm_name;
-			// }
 			$this->load->template('user/user_view',$data);
 			
 		}else{
@@ -128,8 +97,6 @@ class User extends CI_Controller {
 						'e_time_1' =>  $this->input->post('e_time_1'),  
 						'e_time_2' =>  $this->input->post('e_time_2'),
 						'e_24hour' =>  is_null($this->input->post('round_the_clock')) ? 'OFF' : $this->input->post('round_the_clock'), 
-						// 'e_rent_pnumber' =>  $this->input->post('e_pnumber'),  
-						// 'e_rent_price' =>  $this->input->post('e_rend_price'), 
 						'e_address' =>  $this->input->post('e_address'),  
 						'e_lat' =>  $this->input->post('lat'),  
 						'e_lng' =>  $this->input->post('lng')
@@ -208,11 +175,6 @@ class User extends CI_Controller {
 						));
 					redirect('user', 'location');
 					break;
-				
-				
-				// default: 
-				// 	# code...
-				// 	break;
 			}
 
 	}else{
@@ -237,8 +199,6 @@ class User extends CI_Controller {
 	}
 
 	public function updateProduct(){
-		// out($_POST);die();
-		$model_name = $this->input->post('current_statment');
 		$id = $this->input->post('item_id');
 		switch ($model_name) {
 			case 'Beauty_salon_model':
@@ -276,10 +236,8 @@ class User extends CI_Controller {
 				# code...
 				break;
 		}
-		// out($model_name);die();
 		$this->load->model($model_name);
 		$this->$model_name->update($id,$data);
-		// $this->$model_name->insert($data);
 		$this->load->library('user_agent');
 			redirect($this->agent->referrer(),'location');
 	}
@@ -289,7 +247,7 @@ class User extends CI_Controller {
 				$this->load->model("Statment_type_model");
 				$this->load->model($model);
 				$update_items = $this->$model->getRecord($itemId);
-				if(!is_null($update_items)){
+				if(isset($update_items) && !is_null($update_items)){
 					$update_items->statment = $model;
 					// out($update_items);
 					$data = array(

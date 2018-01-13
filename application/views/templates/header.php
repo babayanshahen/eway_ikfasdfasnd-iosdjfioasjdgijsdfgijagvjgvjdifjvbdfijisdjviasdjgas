@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="google-site-verification" content="hVJxz7cJVQzFaB7XOI5LhEBBrTSaX5PaRYBCtBIUSD4" />
     <title>Easy way </title>
     <link href="<?=base_url('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?=base_url('bootstrap/css/portfolio-item.css')?>" rel="stylesheet">

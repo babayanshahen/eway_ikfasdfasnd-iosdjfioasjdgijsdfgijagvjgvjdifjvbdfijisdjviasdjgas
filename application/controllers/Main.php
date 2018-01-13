@@ -3,6 +3,19 @@
 class Main extends CI_Controller {
 
 	public function index(){
+		if($this->input->server('HTTP_HOST') !== 'localhost'){
+			$IPaddress = $this->input->server('REMOTE_ADDR');
+			$this->load->model('Visitors_model');
+			$details = json_decode(file_get_contents("https://ipdata.co/{$IPaddress}"));
+			$ipdata =  array(
+				'e_country' => $details->country_name, 
+				'e_ip_address' => $IPaddress,
+				'e_organization' => $details->organisation
+			);
+			$this->Visitors_model->insert($ipdata);
+		}
+		// echo $details->city;
+		//Mountain View
 		$this->load->template('main/main_view');
 		
 	}

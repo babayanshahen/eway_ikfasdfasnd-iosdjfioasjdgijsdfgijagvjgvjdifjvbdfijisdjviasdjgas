@@ -1,4 +1,3 @@
-<?php// out($update_items); ?>
 <link href="<?=base_url('assets/css/user_view.css')?>" rel="stylesheet">
 <div class="panel panel col-md-12">
 			<div  class='col-md-4'>
